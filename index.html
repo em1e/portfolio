@@ -17,14 +17,11 @@
     <meta property="og:title" content="em1e" />
     <meta property="og:description"
       content="em1e - junior software developer, data and AI enthusiast, foodie" />
-    <meta name="theme-color" content="#60d15e" />
+    <meta name="theme-color" content="#2B2B2C" />
   </head>
 
 
   <body>
-    <noscript>you need to enable javascript to view this site.</noscript>
-    <canvas id="background"></canvas>
-
     <div class="header">
       <h1>em1e</h1>
       <p>Software / Full-Stack Developer, Data/AI/open source enthusiast, foodie</p>
@@ -42,11 +39,37 @@
         </a>
       </div>
     </div>
-    <div class="experience"></div>
-    <div class="projects"></div>
+
+    <div class="content">
+      <h2>Experience</h2>
+      <p>Relevant places i've been employed at</p>
+    </div>
+
+    <div id="experience-list" class="card-list">
+      <div id="card-template" class="card" hidden>
+        <div class="card-timestamp"></div>
+        
+        <div class="card-header">
+          <h2 class="card-title"></h2>
+          <p class="card-description"></p>
+        </div>
+
+        <div class="card-footer">
+          <div class="card-links"></div>
+          <div class="card-langs"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <h2>Projects</h2>
+      <p>Some of the projects i've worked on or am proud of</p>
+    </div>
+
+    <div id="project-list" class="card-list"></div>
     <div class="about"></div>
-
-    <!-- <div id="app"></div> -->
-
+    <div class="footer">
+      <p>Made with love by em1e</p>
+    </div>
   </body>
 </html>
