@@ -1,8 +1,11 @@
+import './particles'
 import { projects } from "./content/projects"
 import type { Project } from "./content/projects"
 import type { Experience } from "./content/experience"
 import { experiences } from "./content/experience"
 import { tech } from "./content/technologies"
+import { blogs } from "./content/blogs";
+import type { Blog } from "./content/blogs";
 
 const projctListElement = document.getElementById('project-list')! as HTMLDivElement
 const experienceListElement = document.getElementById('experience-list')! as HTMLDivElement
@@ -11,6 +14,38 @@ const delay = 50
 
 projects.forEach(addProject)
 experiences.forEach(addExperience)
+blogs.forEach(addBlog)
+
+setupHeaderNav()
+
+function setupHeaderNav() {
+    const header = document.querySelector('.header') as HTMLDivElement | null
+    if (!header) return
+
+    const nav = document.createElement('nav')
+    nav.className = 'nav'
+
+    const links = [
+        { name: 'Experience', href: '#experience-list' },
+        { name: 'Projects', href: '#project-list' },
+        { name: 'Blog', href: '#blog-list' }
+    ]
+
+    links.forEach(l => {
+        const a = document.createElement('a')
+        a.textContent = l.name
+        a.setAttribute('href', l.href)
+        a.className = 'nav-link'
+        a.addEventListener('click', (e) => {
+            e.preventDefault()
+            const el = document.querySelector(l.href)
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        })
+        nav.appendChild(a)
+    })
+
+    header.appendChild(nav)
+}
 
 function addProject(project: Project, index: number) {
     const newProject = projectTemplateElement.cloneNode(true) as HTMLDivElement
@@ -60,6 +95,54 @@ function addProject(project: Project, index: number) {
     if (project.hidden) newProject.style.display = 'none'
     projctListElement.appendChild(newProject)
 }
+
+    const blogListElement = document.getElementById('blog-list') as HTMLDivElement | null
+
+    function addBlog(blog: Blog, index: number) {
+        if (!blogListElement) return
+        const newCard = projectTemplateElement.cloneNode(true) as HTMLDivElement
+
+        const timestampElement = newCard.querySelector('.card-timestamp')! as HTMLDivElement
+        const nameElement = newCard.querySelector('.card-title')! as HTMLHeadingElement
+        const descriptionElement = newCard.querySelector('.card-description')! as HTMLParagraphElement
+        const linkElement = newCard.querySelector('.card-links')! as HTMLAnchorElement
+
+        timestampElement.textContent = blog.date
+        nameElement.textContent = blog.title
+        descriptionElement.textContent = blog.description
+
+        if (blog.url) {
+            const a = document.createElement('a')
+            a.className = 'card-link'
+            a.setAttribute('href', blog.url)
+            a.setAttribute('target', '_blank')
+            a.setAttribute('rel', 'noopener noreferrer')
+            const btn = document.createElement('button')
+            btn.textContent = 'Read'
+            a.appendChild(btn)
+            linkElement.appendChild(a)
+        } else {
+            const note = document.createElement('p')
+            note.textContent = 'No link'
+            note.className = 'note'
+            linkElement.appendChild(note)
+        }
+
+        if (blog.image) {
+            const img = document.createElement('img')
+            img.setAttribute('src', blog.image)
+            img.setAttribute('alt', blog.title)
+            img.style.width = '100%'
+            img.style.borderRadius = '6px'
+            img.style.marginBottom = '0.5rem'
+            const header = newCard.querySelector('.card-header')!
+            header.insertBefore(img, header.firstChild)
+        }
+
+        newCard.removeAttribute('id')
+        newCard.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
+        blogListElement.appendChild(newCard)
+    }
 
 function addExperience(experience: Experience, index: number) {
     const newExp = projectTemplateElement.cloneNode(true) as HTMLDivElement

@@ -51,7 +51,7 @@ export const projects: Project[] = [
         id: 'trancendance',
         name: 'Trancendance',
         description: 'Simple one page web application for playing pong, with user authentication, tournaments, game settings and multiplayer functionality.',
-        technologies: ['python', 'js', 'docker', 'html', 'css', 'json'],
+        technologies: ['python', 'docker', 'js', 'html', 'css', 'json'],
         date: '2025-02-03',
         links: [
             {
@@ -69,7 +69,7 @@ export const projects: Project[] = [
         id: 'survive',
         name: 'Survive',
         description: '2D space survival game made with C++ and SFML, where the player must fight alien ships to survive as long as possible. This was my submission for the Supercell Coding Challenge 2024.',
-        technologies: ['cpp', 'sfml', 'cmake'],
+        technologies: ['cpp', 'cmake', 'sfml'],
         date: '2024-11-11',
         links: [
             {
