@@ -3,17 +3,21 @@ import { projects } from "./content/projects"
 import type { Project } from "./content/projects"
 import type { Experience } from "./content/experience"
 import { experiences } from "./content/experience"
+import { education } from "./content/education"
+import type { Education } from "./content/education"
 import { tech } from "./content/technologies"
 import { blogs } from "./content/blogs";
 import type { Blog } from "./content/blogs";
 
 const projctListElement = document.getElementById('project-list')! as HTMLDivElement
 const experienceListElement = document.getElementById('experience-list')! as HTMLDivElement
+const educationListElement = document.getElementById('education-list')! as HTMLDivElement
 const projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
 const delay = 50
 
 projects.forEach(addProject)
 experiences.forEach(addExperience)
+education.slice(0, 3).forEach(addEducation)
 blogs.forEach(addBlog)
 
 setupHeaderNav()
@@ -139,9 +143,6 @@ function addProject(project: Project, index: number) {
             header.insertBefore(img, header.firstChild)
         }
 
-        newCard.removeAttribute('id')
-        newCard.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
-        blogListElement.appendChild(newCard)
     }
 
 function addExperience(experience: Experience, index: number) {
@@ -213,6 +214,75 @@ function addExperience(experience: Experience, index: number) {
     newExp.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
 
     experienceListElement.appendChild(newExp)
+}
+
+function addEducation(ed: Education, index: number) {
+    if (!educationListElement) return
+    const newCard = projectTemplateElement.cloneNode(true) as HTMLDivElement
+
+    const timestampElement = newCard.querySelector('.card-timestamp')! as HTMLDivElement
+    const nameElement = newCard.querySelector('.card-title')! as HTMLHeadingElement
+    const descriptionElement = newCard.querySelector('.card-description')! as HTMLParagraphElement
+    const linkElement = newCard.querySelector('.card-links')! as HTMLDivElement
+    const languageElement = newCard.querySelector('.card-langs')! as HTMLDivElement
+    const headerEl = newCard.querySelector('.card-header')! as HTMLDivElement
+
+    const formatYYYYMM = (dateStr?: string) => {
+        if (!dateStr) return undefined
+        const d = new Date(dateStr)
+        if (isNaN(d.getTime())) return dateStr
+        const yyyy = d.getFullYear()
+        const mm = String(d.getMonth() + 1).padStart(2, '0')
+        return `${mm}/${yyyy}`
+    }
+
+    const start = formatYYYYMM(ed.startDate) || ''
+    const end = formatYYYYMM(ed.endDate) || ''
+    const range = ed.ongoing ? `current - ${start}` : (end ? `${start} - ${end}` : start)
+
+    timestampElement.textContent = range
+    nameElement.textContent = ed.major
+
+    // show school as a small role/subtitle
+    const schoolEl = document.createElement('p')
+    schoolEl.className = 'card-role'
+    schoolEl.textContent = ed.school
+    headerEl.insertBefore(schoolEl, descriptionElement)
+
+    descriptionElement.textContent = ed.description || ''
+
+    if (ed.url && ed.url.length > 0) {
+        const a = document.createElement('a')
+        a.className = 'card-link'
+        a.setAttribute('href', ed.url)
+        a.setAttribute('target', '_blank')
+        a.setAttribute('rel', 'noopener noreferrer')
+        const btn = document.createElement('button')
+        btn.textContent = 'Read more'
+        a.appendChild(btn)
+        linkElement.appendChild(a)
+    } else {
+        const note = document.createElement('p')
+        note.textContent = 'No links available'
+        note.className = 'note'
+        linkElement.appendChild(note)
+    }
+
+    if (ed.technologies && ed.technologies.length > 0) {
+        ed.technologies.forEach(langName => {
+            const lang = tech[langName]
+            if (!lang) return
+            const langElement = document.createElement('img')
+            langElement.setAttribute('src', `https://cdn.simpleicons.org/${lang.icon}`)
+            langElement.setAttribute('alt', lang.name)
+            languageElement.appendChild(langElement)
+        })
+    }
+
+    newCard.removeAttribute('id')
+    newCard.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
+    newCard.classList.add('education-card')
+    educationListElement.appendChild(newCard)
 }
 
 projectTemplateElement.remove()

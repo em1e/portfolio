@@ -57,7 +57,7 @@
         <div class="landing--container-right">
           <div class="lcr--content" style="font-weight: 900; background-color: rgb(30,30,30,0.9); border-radius: 10px; padding: 20px;">
             <h6>Software Developer • Web developer • Data Scientist </h6>
-            <h1>Vilja Kettunen</h1>
+            <h1 style="color: #D08159;">Vilja Kettunen</h1>
             <p>There wasn't a bird in the sky, but that was not what caught her attention. It was the clouds. The deep green that isn't the color of clouds, but came with these. She knew what was coming and she hoped she was prepared. </p>
             <div class="lcr-buttonContainer">
               <a href="/static/media/resume.bc382d73.pdf" download="resume" target="_blank" rel="noreferrer" class="btn resumeBtn">Download CV</a>
@@ -71,12 +71,14 @@
     <!-- |||||| About |||||| -->
     <section id="about" class="content about">
 
-      <!-- Line -->
+      <!-- Line (decorative) -->
       <div class="line-styling">
         <div class="style-circle" style="background: var(--a0)"></div>
         <div class="style-circle" style="background: var(--a0)"></div>
         <div class="style-circle" style="background: var(--a0)"></div>
+
         <div class="style-line" style="background: var(--a0)"></div>
+
         <div class="style-circle" style="background: var(--a0)"></div>
         <div class="style-circle" style="background: var(--a0)"></div>
         <div class="style-circle" style="background: var(--a0)"></div>
@@ -84,28 +86,41 @@
 
       <!-- Text -->
       <div class="about-body">
-        <div class="about-description" style="font-weight: 900; background-color: rgb(30,30,30,0.9); border-radius: 10px; padding: 20px;">
-          <h2 style="color: var(--a0)">About</h2>
-          <p style="color: var(--fg0)">A short intro about me and what I build short intro about me and what I build short intro about me and what I build short intro about me and what I build. short intro about me and what I build short intro about me and what I build</p>
+        <div class="education-description panel">
+          <h2>Who I am</h2>
+          <p>
+            I build web applications and enjoy turning ideas into usable products. My focus is on clean, accessible interfaces and performant, well-tested code. I work across front-end and data tools — React, TypeScript, Node, and Python — and I enjoy learning new technologies to solve real problems. Outside of work I like hiking, photography, and experimenting with generative art.
+          </p>
+          <p>
+            Recently I've been working on projects that combine data and UX to help people make smarter decisions. I enjoy mentoring junior developers and collaborating with designers to ship delightful experiences.
+          </p>
         </div>
 
         <!-- Image -->
         <div class="about-img">
-          <img src="assets/pfp.png" alt=""/>
+          <img src="assets/pfp.png" alt="Profile image"/>
         </div>
       </div>
     </section>
 
     <!-- |||||| Education |||||| -->
     <section id="education" class="content education">
-      <h2>Education</h2>
-      <p>Your education, degrees and institutions.</p>
+      <div class="education-body">
+        <div class="education-description">
+          <h2>Education</h2>
+          <div id="education-list" class="card-list"></div>
+        </div>
+
+        <!-- Image -->
+        <div class="about-img">
+          <img src="assets/pfp.png" alt="Profile image"/>
+        </div>
+      </div>
     </section>
 
-    <!-- |||||| Skills |||||| -->
-    <section id="skills" class="content skills">
-      <h2>Skills</h2>
-      <p>Languages, frameworks and tools I use.</p>
+    <!-- |||||| Certification |||||| -->
+    <section id="certification" class="content certification">
+      <h2>Certifications</h2>
     </section>
 
     <!-- |||||| Experience |||||| -->
@@ -130,6 +145,12 @@
       </div>
     </div>
 
+    <!-- |||||| Skills |||||| -->
+    <section id="skills" class="content skills">
+      <h2>Skills</h2>
+      <p>Languages, frameworks and tools I use.</p>
+    </section>
+
     <!-- |||||| Projects |||||| -->
     <section class="content">
       <h2>Projects</h2>
@@ -137,18 +158,6 @@
     </section>
 
     <div id="project-list" class="card-list"></div>
-
-    <!-- |||||| Achievement |||||| -->
-    <section id="achievement" class="content achievement">
-      <h2>Achievements</h2>
-      <p>Awards, recognitions, or notable milestones.</p>
-    </section>
-
-    <!-- |||||| Services |||||| -->
-    <section id="services" class="content services">
-      <h2>Services</h2>
-      <p>What I offer (consulting, development, mentoring, etc.)</p>
-    </section>
 
     <!-- |||||| Testimonials |||||| -->
     <section id="testimonials" class="content testimonials">
