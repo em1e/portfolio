@@ -78,7 +78,31 @@ export const tech = {
     wp: {
         name: 'WordPress',
         icon: 'wordpress'
-    }
+    },
+    git: {
+        name: 'git',
+        icon: 'git'
+    },
+    linux: {
+        name: 'Linux',
+        icon: 'linux'
+    },
+    figma: {
+        name: 'Figma',
+        icon: 'figma'
+    },
+    blender: {
+        name: 'Blender',
+        icon: 'blender'
+    },
+    react: {
+        name: 'React',
+        icon: 'react'
+    },
+    node: {
+        name: 'node.js',
+        icon: 'nodedotjs'
+    },
 }
 
 // NOTE FOR SELF: when adding a new technology, check link below first:
