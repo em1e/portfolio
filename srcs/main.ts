@@ -11,20 +11,44 @@ import { certifications } from "./content/certifications";
 import type { Certification } from "./content/certifications"
 import type { Blog } from "./content/blogs";
 
-const projctListElement = document.getElementById('project-list')! as HTMLDivElement
-const experienceListElement = document.getElementById('experience-list')! as HTMLDivElement
-const educationListElement = document.getElementById('education-list')! as HTMLDivElement
-const certificationListElement = document.getElementById('certification-cards')! as HTMLDivElement
-const projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
-const delay = 50
+// Defer DOM-manipulating initialization until the document is ready. Vite
+// injects build script tags into the <head>, so modules run before the DOM
+// is parsed; wrapping initialization in DOMContentLoaded prevents runtime
+// errors (e.g. null element lookups) on GitHub Pages.
+// Module-scope references used by the helper functions below. They are
+// assigned when the DOM is ready so functions can still reference them.
+let projctListElement: HTMLDivElement | null = null
+let experienceListElement: HTMLDivElement | null = null
+let educationListElement: HTMLDivElement | null = null
+let certificationListElement: HTMLDivElement | null = null
+let projectTemplateElement: HTMLTemplateElement | null = null
+let delay = 50
 
-projects.forEach(addProject)
-experiences.forEach(addExperience)
-education.slice(0, 3).forEach(addEducation)
-certifications.forEach(addCertification)
-blogs.forEach(addBlog)
+document.addEventListener('DOMContentLoaded', () => {
+    projctListElement = document.getElementById('project-list')! as HTMLDivElement
+    experienceListElement = document.getElementById('experience-list')! as HTMLDivElement
+    educationListElement = document.getElementById('education-list')! as HTMLDivElement
+    certificationListElement = document.getElementById('certification-cards')! as HTMLDivElement
+    projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
 
-setupHeaderNav()
+    projects.forEach(addProject)
+    experiences.forEach(addExperience)
+    education.slice(0, 3).forEach(addEducation)
+    certifications.forEach(addCertification)
+    blogs.forEach(addBlog)
+
+    setupHeaderNav()
+
+    // Remove the template from DOM to avoid duplication when cloning
+    projectTemplateElement!.remove()
+
+    // Local functions rely on these elements being in scope in the module;
+    // to keep function definitions untouched we capture them via closures by
+    // re-binding the outer-scope names. (The functions below refer to the
+    // variables by name.)
+    // Note: functions addProject, addExperience, etc. are defined below and
+    // will close over the variables declared above.
+})
 
 function setupHeaderNav() {
     const header = document.querySelector('.header') as HTMLDivElement | null
@@ -56,7 +80,7 @@ function setupHeaderNav() {
 }
 
 function addProject(project: Project, index: number) {
-    const newProject = projectTemplateElement.cloneNode(true) as HTMLDivElement
+    const newProject = projectTemplateElement!.cloneNode(true) as HTMLDivElement
 
     const timestampElement = newProject.querySelector('.card-timestamp')! as HTMLDivElement
     const nameElement = newProject.querySelector('.card-title')! as HTMLHeadingElement
@@ -101,14 +125,14 @@ function addProject(project: Project, index: number) {
     newProject.removeAttribute('id')
     newProject.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
     if (project.hidden) newProject.style.display = 'none'
-    projctListElement.appendChild(newProject)
+    projctListElement!.appendChild(newProject)
 }
 
     const blogListElement = document.getElementById('blog-list') as HTMLDivElement | null
 
     function addBlog(blog: Blog) {
         if (!blogListElement) return
-        const newCard = projectTemplateElement.cloneNode(true) as HTMLDivElement
+    const newCard = projectTemplateElement!.cloneNode(true) as HTMLDivElement
 
         const timestampElement = newCard.querySelector('.card-timestamp')! as HTMLDivElement
         const nameElement = newCard.querySelector('.card-title')! as HTMLHeadingElement
@@ -150,7 +174,7 @@ function addProject(project: Project, index: number) {
     }
 
 function addExperience(experience: Experience, index: number) {
-    const newExp = projectTemplateElement.cloneNode(true) as HTMLDivElement
+    const newExp = projectTemplateElement!.cloneNode(true) as HTMLDivElement
 
     const timestampElement = newExp.querySelector('.card-timestamp')! as HTMLDivElement
     const nameElement = newExp.querySelector('.card-title')! as HTMLHeadingElement
@@ -217,12 +241,12 @@ function addExperience(experience: Experience, index: number) {
     newExp.removeAttribute('id')
     newExp.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
 
-    experienceListElement.appendChild(newExp)
+    experienceListElement!.appendChild(newExp)
 }
 
 function addEducation(ed: Education, index: number) {
     if (!educationListElement) return
-    const newCard = projectTemplateElement.cloneNode(true) as HTMLDivElement
+    const newCard = projectTemplateElement!.cloneNode(true) as HTMLDivElement
 
     const timestampElement = newCard.querySelector('.card-timestamp')! as HTMLDivElement
     const nameElement = newCard.querySelector('.card-title')! as HTMLHeadingElement
@@ -289,11 +313,13 @@ function addEducation(ed: Education, index: number) {
     educationListElement.appendChild(newCard)
 }
 
-projectTemplateElement.remove()
+// projectTemplateElement is removed after DOMContentLoaded (see above). Keep
+// this line commented out to avoid double-removal during module evaluation.
+// projectTemplateElement.remove()
 
 function addCertification(cert: Certification, index: number) {
     if (!certificationListElement) return
-    const newCard = projectTemplateElement.cloneNode(true) as HTMLDivElement
+    const newCard = projectTemplateElement!.cloneNode(true) as HTMLDivElement
 
     const timestampElement = newCard.querySelector('.card-timestamp')! as HTMLDivElement
     const nameElement = newCard.querySelector('.card-title')! as HTMLHeadingElement
