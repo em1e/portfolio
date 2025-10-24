@@ -2381,8 +2381,8 @@ body::before {
 }
 
 .edu-img > img {
-  width: 20rem;
-  height: 20rem;
+  width: 30rem;
+  height: 30rem;
   border-radius: 10px;
   margin: 2rem;
   margin-left: 5rem
