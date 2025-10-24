@@ -11,12 +11,6 @@ import { certifications } from "./content/certifications";
 import type { Certification } from "./content/certifications"
 import type { Blog } from "./content/blogs";
 
-// Defer DOM-manipulating initialization until the document is ready. Vite
-// injects build script tags into the <head>, so modules run before the DOM
-// is parsed; wrapping initialization in DOMContentLoaded prevents runtime
-// errors (e.g. null element lookups) on GitHub Pages.
-// Module-scope references used by the helper functions below. They are
-// assigned when the DOM is ready so functions can still reference them.
 let projctListElement: HTMLDivElement | null = null
 let experienceListElement: HTMLDivElement | null = null
 let educationListElement: HTMLDivElement | null = null
@@ -45,15 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupHeaderNav()
 
-    // Remove the template from DOM to avoid duplication when cloning
     projectTemplateElement!.remove()
-
-    // Local functions rely on these elements being in scope in the module;
-    // to keep function definitions untouched we capture them via closures by
-    // re-binding the outer-scope names. (The functions below refer to the
-    // variables by name.)
-    // Note: functions addProject, addExperience, etc. are defined below and
-    // will close over the variables declared above.
 })
 
 function setupHeaderNav() {
@@ -278,7 +264,6 @@ function addEducation(ed: Education, index: number) {
     timestampElement.textContent = range
     nameElement.textContent = ed.major
 
-    // show school as a small role/subtitle
     const schoolEl = document.createElement('h3')
     schoolEl.className = 'card-role'
     schoolEl.textContent = ed.school
@@ -320,10 +305,6 @@ function addEducation(ed: Education, index: number) {
     educationListElement.appendChild(newCard)
 }
 
-// projectTemplateElement is removed after DOMContentLoaded (see above). Keep
-// this line commented out to avoid double-removal during module evaluation.
-// projectTemplateElement.remove()
-
 function addCertification(cert: Certification, index: number) {
     if (!certificationListElement) return
     const newCard = projectTemplateElement!.cloneNode(true) as HTMLDivElement
@@ -334,11 +315,10 @@ function addCertification(cert: Certification, index: number) {
     const linkElement = newCard.querySelector('.card-links')! as HTMLDivElement
     const languageElement = newCard.querySelector('.card-langs')! as HTMLDivElement
     const headerEl = newCard.querySelector('.card-header')! as HTMLDivElement
-    // populate basic fields
+
     timestampElement.textContent = cert.Date || ''
     nameElement.textContent = cert.certificate
 
-    // show issuer as a small subtitle
     const issuerEl = document.createElement('p')
     issuerEl.className = 'card-role'
     issuerEl.textContent = cert.given_by
@@ -346,28 +326,22 @@ function addCertification(cert: Certification, index: number) {
 
     descriptionElement.textContent = cert.description || ''
 
-    // create content wrapper to hold header + footer (stacked information)
     const contentWrapper = document.createElement('div')
     contentWrapper.className = 'certcard-content'
 
-    // move header and footer into the content wrapper so information stacks vertically
     const footerEl = newCard.querySelector('.card-footer')! as HTMLDivElement
-    // detach and append header + footer into content wrapper
     newCard.removeChild(headerEl)
     newCard.removeChild(footerEl)
     contentWrapper.appendChild(headerEl)
     contentWrapper.appendChild(footerEl)
 
-    // move timestamp into the content wrapper so it stacks with the other fields
     if (timestampElement && timestampElement.parentElement === newCard) {
         newCard.removeChild(timestampElement)
         contentWrapper.insertBefore(timestampElement, contentWrapper.firstChild)
     }
 
-    // insert content wrapper only (no image container) so the card shows stacked info only
     newCard.appendChild(contentWrapper)
 
-    // link button
     if (cert.link && cert.link.length > 0) {
         const a = document.createElement('a')
         a.className = 'card-link'
@@ -385,7 +359,6 @@ function addCertification(cert: Certification, index: number) {
         linkElement.appendChild(note)
     }
 
-    // area / technologies
     if (cert.technologies && cert.technologies.length > 0) {
         cert.technologies.forEach(langName => {
             const lang = tech[langName as keyof typeof tech]
@@ -399,7 +372,6 @@ function addCertification(cert: Certification, index: number) {
 
     newCard.removeAttribute('id')
     newCard.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
-    // apply certification specific class for styling
     newCard.classList.add('certification-card')
     certificationListElement.appendChild(newCard)
 }
