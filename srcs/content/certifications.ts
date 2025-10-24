@@ -2,7 +2,7 @@ import type { technologies } from "./technologies";
 
 export const certificationn: Certification[] = [
 	{
-		id: "projectmanagement",
+		id: "project",
 		certificate: "Google Project Management: Professional Certificate",
 		given_by: "Google via Coursera",
 		Date: "2024-10",
@@ -10,7 +10,7 @@ export const certificationn: Certification[] = [
 		link: "assets/pfp.png"
 	},
 	{
-		id: "webdev",
+		id: "web",
 		certificate: "The Complete Web Developer in 2023: Zero to Mastery",
 		given_by: "Zero to Mastery",
 		Date: "2023-08",
@@ -19,7 +19,7 @@ export const certificationn: Certification[] = [
 		link: "assets/pfp.png"
 	},
 	{
-		id: "pythondev",
+		id: "python",
 		certificate: "Complete Python Developer in 2023: Zero to Mastery",
 		given_by: "Zero to Mastery",
 		Date: "2023-09",
