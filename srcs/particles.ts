@@ -3,8 +3,12 @@
 // causes `getElementById` to return null and crash the script. Wrapping the
 // initialization in DOMContentLoaded prevents that.
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('[particles] DOMContentLoaded handler running')
     const canvas = document.getElementById('background') as HTMLCanvasElement | null;
-    if (!canvas) return
+    if (!canvas) {
+        console.warn('[particles] canvas not found, aborting particle init')
+        return
+    }
     const ctx = canvas.getContext('2d')!
     ctx.imageSmoothingEnabled = false;
 

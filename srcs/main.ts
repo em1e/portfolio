@@ -25,6 +25,7 @@ let projectTemplateElement: HTMLTemplateElement | null = null
 let delay = 50
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('[main] DOMContentLoaded handler running')
     projctListElement = document.getElementById('project-list')! as HTMLDivElement
     experienceListElement = document.getElementById('experience-list')! as HTMLDivElement
     educationListElement = document.getElementById('education-list')! as HTMLDivElement
@@ -32,10 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
     projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
 
     projects.forEach(addProject)
+    console.log(`[main] projects.length = ${projects.length}`)
     experiences.forEach(addExperience)
+    console.log(`[main] experiences.length = ${experiences.length}`)
     education.slice(0, 3).forEach(addEducation)
+    console.log(`[main] educationToShow = ${Math.min(3, education.length)}`)
     certifications.forEach(addCertification)
+    console.log(`[main] certifications.length = ${certifications.length}`)
     blogs.forEach(addBlog)
+    console.log(`[main] blogs.length = ${blogs.length}`)
 
     setupHeaderNav()
 
@@ -80,6 +86,7 @@ function setupHeaderNav() {
 }
 
 function addProject(project: Project, index: number) {
+    console.debug(`[main] addProject: ${project.id} (index=${index})`)
     const newProject = projectTemplateElement!.cloneNode(true) as HTMLDivElement
 
     const timestampElement = newProject.querySelector('.card-timestamp')! as HTMLDivElement
