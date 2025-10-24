@@ -1,6 +1,6 @@
 import type { technologies } from "./technologies";
 
-export const certificationn: Certification[] = [
+export const certifications: Certification[] = [
 	{
 		id: "project",
 		certificate: "Google Project Management: Professional Certificate",
@@ -24,7 +24,7 @@ export const certificationn: Certification[] = [
 		given_by: "Zero to Mastery",
 		Date: "2023-09",
 		description: "An all-encompassing Python programming course that guides learners through the fundamentals to advanced topics, including web development, data analysis, and automation using Python.",
-		technologies: ['html', 'css', 'js', 'react', 'node', 'postgresql', 'git'],
+		technologies: ['python', 'git'],
 		link: "assets/pfp.png"
 	}
 ]

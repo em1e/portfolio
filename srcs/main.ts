@@ -7,17 +7,21 @@ import { education } from "./content/education"
 import type { Education } from "./content/education"
 import { tech } from "./content/technologies"
 import { blogs } from "./content/blogs";
+import { certifications } from "./content/certifications";
+import type { Certification } from "./content/certifications"
 import type { Blog } from "./content/blogs";
 
 const projctListElement = document.getElementById('project-list')! as HTMLDivElement
 const experienceListElement = document.getElementById('experience-list')! as HTMLDivElement
 const educationListElement = document.getElementById('education-list')! as HTMLDivElement
+const certificationListElement = document.getElementById('certification-cards')! as HTMLDivElement
 const projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
 const delay = 50
 
 projects.forEach(addProject)
 experiences.forEach(addExperience)
 education.slice(0, 3).forEach(addEducation)
+certifications.forEach(addCertification)
 blogs.forEach(addBlog)
 
 setupHeaderNav()
@@ -102,7 +106,7 @@ function addProject(project: Project, index: number) {
 
     const blogListElement = document.getElementById('blog-list') as HTMLDivElement | null
 
-    function addBlog(blog: Blog, index: number) {
+    function addBlog(blog: Blog) {
         if (!blogListElement) return
         const newCard = projectTemplateElement.cloneNode(true) as HTMLDivElement
 
@@ -238,13 +242,13 @@ function addEducation(ed: Education, index: number) {
 
     const start = formatYYYYMM(ed.startDate) || ''
     const end = formatYYYYMM(ed.endDate) || ''
-    const range = ed.ongoing ? `current - ${start}` : (end ? `${start} - ${end}` : start)
+    const range = ed.ongoing ? `${start} - current` : (end ? `${start} - ${end}` : start)
 
     timestampElement.textContent = range
     nameElement.textContent = ed.major
 
     // show school as a small role/subtitle
-    const schoolEl = document.createElement('p')
+    const schoolEl = document.createElement('h3')
     schoolEl.className = 'card-role'
     schoolEl.textContent = ed.school
     headerEl.insertBefore(schoolEl, descriptionElement)
@@ -286,3 +290,83 @@ function addEducation(ed: Education, index: number) {
 }
 
 projectTemplateElement.remove()
+
+function addCertification(cert: Certification, index: number) {
+    if (!certificationListElement) return
+    const newCard = projectTemplateElement.cloneNode(true) as HTMLDivElement
+
+    const timestampElement = newCard.querySelector('.card-timestamp')! as HTMLDivElement
+    const nameElement = newCard.querySelector('.card-title')! as HTMLHeadingElement
+    const descriptionElement = newCard.querySelector('.card-description')! as HTMLParagraphElement
+    const linkElement = newCard.querySelector('.card-links')! as HTMLDivElement
+    const languageElement = newCard.querySelector('.card-langs')! as HTMLDivElement
+    const headerEl = newCard.querySelector('.card-header')! as HTMLDivElement
+    // populate basic fields
+    timestampElement.textContent = cert.Date || ''
+    nameElement.textContent = cert.certificate
+
+    // show issuer as a small subtitle
+    const issuerEl = document.createElement('p')
+    issuerEl.className = 'card-role'
+    issuerEl.textContent = cert.given_by
+    headerEl.insertBefore(issuerEl, descriptionElement)
+
+    descriptionElement.textContent = cert.description || ''
+
+    // create content wrapper to hold header + footer (stacked information)
+    const contentWrapper = document.createElement('div')
+    contentWrapper.className = 'certcard-content'
+
+    // move header and footer into the content wrapper so information stacks vertically
+    const footerEl = newCard.querySelector('.card-footer')! as HTMLDivElement
+    // detach and append header + footer into content wrapper
+    newCard.removeChild(headerEl)
+    newCard.removeChild(footerEl)
+    contentWrapper.appendChild(headerEl)
+    contentWrapper.appendChild(footerEl)
+
+    // move timestamp into the content wrapper so it stacks with the other fields
+    if (timestampElement && timestampElement.parentElement === newCard) {
+        newCard.removeChild(timestampElement)
+        contentWrapper.insertBefore(timestampElement, contentWrapper.firstChild)
+    }
+
+    // insert content wrapper only (no image container) so the card shows stacked info only
+    newCard.appendChild(contentWrapper)
+
+    // link button
+    if (cert.link && cert.link.length > 0) {
+        const a = document.createElement('a')
+        a.className = 'card-link'
+        a.setAttribute('href', cert.link)
+        a.setAttribute('target', '_blank')
+        a.setAttribute('rel', 'noopener noreferrer')
+        const btn = document.createElement('button')
+        btn.textContent = 'View Certificate'
+        a.appendChild(btn)
+        linkElement.appendChild(a)
+    } else {
+        const note = document.createElement('p')
+        note.textContent = 'No link available'
+        note.className = 'note'
+        linkElement.appendChild(note)
+    }
+
+    // area / technologies
+    if (cert.technologies && cert.technologies.length > 0) {
+        cert.technologies.forEach(langName => {
+            const lang = tech[langName as keyof typeof tech]
+            if (!lang) return
+            const langElement = document.createElement('img')
+            langElement.setAttribute('src', `https://cdn.simpleicons.org/${lang.icon}`)
+            langElement.setAttribute('alt', lang.name)
+            languageElement.appendChild(langElement)
+        })
+    }
+
+    newCard.removeAttribute('id')
+    newCard.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
+    // apply certification specific class for styling
+    newCard.classList.add('certification-card')
+    certificationListElement.appendChild(newCard)
+}

@@ -102,7 +102,7 @@ function update() {
     const directionX = distance === 0 ? 0 : dx / distance;
     const directionY = distance === 0 ? 0 : dy / distance;
 
-    const maxDistance = 400;
+    const maxDistance = 500;
         const strength = mouse.down ? 0.05 : 0.02;
 
         const force = (maxDistance - distance) / maxDistance * strength;

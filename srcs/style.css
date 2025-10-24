@@ -4,7 +4,7 @@
   --bg0: #1e1e1e;
   --bg1: #0a0a0a;
   --bg2: #1a1a1a;
-  --bg3: #2a2a2a;
+  --bg3: #353434;
   --fg0: #f0f0f0;
   --fg1: #c0c0c0;
   --fg2: #808080;
@@ -15,6 +15,7 @@
   --a0-50: #544E6880;
   --a0-30: #544E684d;
   --pop: #D08159;
+  --pop2: #FFAA5E;
 
   margin: 0;
   padding: 0;
@@ -221,7 +222,6 @@ canvas {
   color: var(--fg0);
   padding: 0.5rem 0.8rem;
   border-radius: 6px;
-  transition: background 0.15s, transform 0.12s;
 }
 
 .nav-link:hover {
@@ -250,19 +250,15 @@ html {
 #education-list.card-list,
 #education .card-list {
   grid-template-columns: 1fr;
+  margin-left: 1rem;
 }
 
 .card {
-  color: var(--fg0);
-  background-color: var(--bg1);
+  background-color: var(--fg1);
+  border-color: 10px solid var(--pop);
   padding: 1rem;
   border-radius: 12px;
 
-  /* box-shadow: 0 6px 18px rgba(0,0,0,0.45); */
-  /* transform: translate(0, 0); */
-  /* transition: all 0.18s ease; */
-
-  /* layout: left timestamp column and main content */
   display: grid;
   grid-template-columns: 96px 1fr;
   grid-template-rows: auto 1fr;
@@ -281,26 +277,45 @@ html {
 
 .card:hover {
   background-color: var(--bg2);
-  /* box-shadow: 8px 12px 22px rgba(0,0,0,0.55); */
-  /* transform: translate(-6px, -6px); */
+}
+
+.card:hover h2 {
+  color: var(--pop);
+}
+
+.card:hover p {
+  font-size: 0.98rem;
+  line-height: 1.45;
+  margin: 0;
+  color: var(--fg1);
+}
+
+.card:hover .card-role {
+  color: var(--fg1);
+}
+
+.card:hover .card-timestamp {
+  color: var(--fg2);
 }
 
 .card h2 {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   margin: 0 0 0.25rem 0;
   line-height: 1.15;
   font-weight: 700;
+  color: var(--bg2);
 }
 
 .card p {
   font-size: 0.98rem;
   line-height: 1.45;
   margin: 0;
+  color: var(--bg2);
 }
 
 .card .card-role {
   font-size: 0.95rem;
-  color: var(--fg1);
+  color: var(--bg2);
   margin: 0 0 0.5rem 0;
 }
 
@@ -308,7 +323,7 @@ html {
   grid-row: 1 / span 2;
   grid-column: 1 / 2;
   font-size: 0.78rem;
-  color: var(--fg2);
+  color: var(--bg1);
   align-self: start;
   display: flex;
   align-items: flex-start;
@@ -337,14 +352,20 @@ html {
 
 .card .card-links a { margin: 0; }
 
-/* link buttons: small pills */
 .card .card-links a button {
-  background: linear-gradient(180deg, var(--bg3), var(--bg2));
+  background: var(--a0-30);
   color: var(--fg0);
-  padding: 0.45rem 0.7rem;
+  padding: 0.5rem 1.3rem;
   font-size: 0.9rem;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.03);
+}
+
+.card .card-links a button:hover {
+  background: var(--pop);
+  color: var(--fg0);
+  padding: 0.5rem 1.3rem;
+  font-size: 0.9rem;
+  border-radius: 999px;
 }
 
 .card .card-langs {
@@ -382,6 +403,22 @@ html {
   .card .card-footer { grid-column: 1 / -1; }
 }
 
+/* Expand mobile-style breakpoint so cards switch to stacked/mobile layout earlier */
+@media (max-width: 1300px) {
+  .card { grid-template-columns: 1fr; grid-template-rows: auto auto auto; }
+  .card .card-timestamp {
+    writing-mode: horizontal-tb;
+    transform: rotate(0deg);
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    justify-content: flex-start;
+  }
+  .card::before { left: 8px; }
+  .card .card-footer { grid-column: 1 / -1; }
+  /* ensure card-list becomes single column at this breakpoint */
+  .card-list { grid-template-columns: 1fr; }
+}
+
 /* Education: always stack content vertically in this order:
    date (timestamp), major (title), school (role), description, technologies, links */
 .education-card {
@@ -390,8 +427,8 @@ html {
   flex-direction: column !important;
   align-items: stretch;
   padding: 1.25rem !important;
-  /* make education cards visually taller */
-  min-height: 20rem;
+  /* allow education cards to size naturally */
+  min-height: auto;
   gap: 0.5rem;
 }
 .education-card .card-timestamp {
@@ -460,18 +497,19 @@ html {
 }
 
 .certification-body {
+  /* two-column layout: description (left) and cards (right) */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
-  justify-content: space-evenly;
-  flex: 0.4;
+  justify-content: space-between;
+  gap: 2rem;
   width: 90%;
 }
 
-.certification-body h1 {
+.certification-body h2 {
   font-family: var(--primaryFont);
-  font-size: 3.5rem;
   margin-bottom: 1.5rem;
+  color: var(--pop);
 }
 
 .certification-body h4 {
@@ -486,9 +524,26 @@ html {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  margin-left: 5%;
   width: 100%;
   flex: 0.6;
+  margin-left: 0;
+}
+
+/* Ensure certification card list shows one card per row */
+#certification-cards.card-list,
+.certification-cards > .card-list {
+  grid-template-columns: 1fr;
+}
+
+/* left column containing the heading and blurb */
+.certification-description {
+  flex: 0.4;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.25rem;
+  margin-top: 9rem;
 }
 
 .certification-card {
@@ -496,7 +551,7 @@ html {
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
-  height: 170px;
+  height: auto;
   padding: 1.5rem;
   border-radius: 20px;
   margin-bottom: 1.5rem;
@@ -561,9 +616,114 @@ html {
 }
 
 .certcard-imgcontainer > img {
-  width: 150px;
-  height: 130px;
+  width: 140px;
+  height: 100px;
   border-radius: 10px;
+}
+
+/* Make certification cards' information stack vertically on the left, with the image on the right */
+.certification-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.certification-card .certcard-content {
+  order: 1;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.certification-card .certcard-imgcontainer {
+  order: 2;
+  flex: 0 0 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.certification-card .card-timestamp {
+  writing-mode: horizontal-tb;
+  transform: none;
+  display: block;
+  margin-bottom: 0.25rem;
+  padding: 0 0 0.25rem 0.5rem;
+  color: var(--fg2);
+}
+
+.certification-card .card-header {
+  padding: 0;
+}
+
+.certification-card .card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-top: 0.75rem;
+}
+
+.certification-card .card-langs { order: 1; margin-bottom: 0.25rem; }
+.certification-card .card-links { order: 2; width: 100%; }
+
+/* --- Mirror of education card styles for certification cards ---
+   Keep certification-specific selectors so you can tweak certs independently
+   of other generic `.card` styles or `.education-card` styles. */
+.certification-card {
+  /* stacked / mobile-friendly default: vertical content order */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch;
+  padding: 1.25rem !important;
+  min-height: auto;
+  gap: 0.5rem;
+}
+.certification-card .card-timestamp {
+  writing-mode: horizontal-tb !important;
+  transform: none !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  text-align: left;
+  padding: 0 0 0.25rem 0.5rem;
+  margin-bottom: 0.25rem;
+  display: block !important;
+}
+.certification-card .card-header {
+  grid-column: auto;
+  grid-row: auto;
+  padding: 0.25rem 0 0 0.5rem;
+  display: block;
+}
+.certification-card .card-footer {
+  grid-column: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-top: 0.75rem;
+}
+.certification-card .card-langs { order: 1; }
+.certification-card .card-links { order: 2; width: 100%; }
+
+/* ensure certification cards also have the row layout variant similar to
+   the education section when appropriate (desktop larger layouts) */
+.certification-card.row-variant,
+.certification-card.desktop {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: auto;
+  padding: 1.5rem;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+  transition: background-color 200ms ease-in-out;
+  /* keep a subtle border like education cards */
+  border: 10px solid var(--bg3);
 }
 
 @media (min-width: 992px) and (max-width: 1380px) {
@@ -596,7 +756,7 @@ html {
 
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1380px) {
   .certification{
     display: flex;
     flex-direction: column;
@@ -751,7 +911,7 @@ html {
 }
 
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1380px) {
   .services {
     padding: 1.7rem;
   }
@@ -1084,7 +1244,7 @@ html {
   font-weight: 500;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1380px) {
 
   .testimonials {
     height: 100%;
@@ -1241,7 +1401,7 @@ html {
   cursor: pointer;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1380px) {
   .projects--bodyContainer {
     display: flex;
     flex-direction: column;
@@ -1508,7 +1668,7 @@ html {
   }
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1380px) {
   .contacts--img {
     display: none;
   }
@@ -1637,7 +1797,6 @@ html {
   align-items: center;
   justify-content: center;
   width: 100%;
-  /* color: var(--a0); */
 }
 
 .education-description {
@@ -1645,7 +1804,7 @@ html {
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-evenly;
-  flex: 0.55;
+  flex: 1;
   width: 100%;
   height: fit-content;
 }
@@ -1661,12 +1820,13 @@ html {
   flex-direction: row;
   align-items:flex-start;
   justify-content: flex-start;
-  width: 90%;
-  height: 140px;
+  width: 100%;
+  height: auto;
   padding: 1.5rem;
   border-radius: 20px;
   margin-bottom: 1.5rem;
   transition: background-color 200ms ease-in-out;
+  border: 10px solid var(--bg3);
 }
 
 .educard-img {
@@ -1718,7 +1878,7 @@ html {
   width: 100%;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1380px) {
   .education {
     min-height: 100%;
   }
@@ -1736,6 +1896,12 @@ html {
     width: 100%;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 1300px) {
+  #education .about-img {
+    display: none;
   }
 }
 
@@ -1836,7 +2002,7 @@ html {
   pointer-events: none;
 }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1380px) {
   .experience {
     min-height: 100%;
   }
@@ -2011,7 +2177,7 @@ html {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1380px) {
   .landing--container {
     grid-template-columns: 1fr;
     gap: 1.25rem;
@@ -2105,8 +2271,8 @@ body::before {
 /* Styles imported from developer-portfolio/src/components/About/About.css */
 /* ------------------------------------------------------------ */
 .about {
-    min-height: 80vh;
-    position: relative;
+  margin-bottom: 8rem;
+  position: relative;
 }
 
 .about .line-styling{
@@ -2138,7 +2304,7 @@ body::before {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-top: 8rem;
+  padding-top: 2rem;
   height: fit-content;
 }
 
@@ -2168,6 +2334,7 @@ body::before {
 .about-description >h2 {
     margin-bottom: 40px;
     font-size: 3.5rem;
+    color: var(--pop);
     font-family: var(--primaryFont);
 }
 
@@ -2188,8 +2355,8 @@ body::before {
 
 .about-img > img {
   width: 340px;
-  max-width: 100%;
-  height: auto;
+  max-width: 40rem;
+  height: 40rem;
   border-radius: 10px;
 }
 
@@ -2200,18 +2367,26 @@ body::before {
   padding: 20px;
 }
 
-/* Education hero (keeps the purple background and spacing) */
 .education {
   background: var(--a0);
   padding: 4rem 0;
 }
 
-/* Make sure education headings match sizing/layout */
 .education-description > h2 {
   font-size: 3.5rem;
   font-family: var(--primaryFont);
   color: var(--fg0);
   margin-bottom: 2rem;
+  margin-left: 2.5rem;
+}
+
+.edu-img > img {
+  width: 340px;
+  max-width: 40rem;
+  height: 40rem;
+  border-radius: 10px;
+  margin: 2rem;
+  margin-left: 5rem
 }
 
 @media (min-width: 992px) and (max-width: 1380px) {
@@ -2224,12 +2399,13 @@ body::before {
       font-size: 1.15rem;
     }
 
-    .about-img>img {
-        width: 300px;
+    .about-img>img, .edu-img>img {
+        width: 30px;
+        margin: 0;
     } 
 }
 
-@media screen and (max-width: 992px){
+@media screen and (max-width: 1380px){
 
   .about .line-styling{
     top: 20px;
@@ -2260,9 +2436,8 @@ body::before {
         font-size: 1.1rem;
     }
 
-    .about-img > img {
-        width: 250px;
-        flex: 0.4;
+    .about-img, .edu-img {
+        display: none;
     }
 
 }
