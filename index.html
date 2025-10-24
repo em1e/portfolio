@@ -8,11 +8,20 @@
     <script type="module" src="/srcs/main.ts"></script>
   </head>
   <body>
-  <!-- Particles -->
+    <!-- |||||| Particles |||||| -->
     <noscript>you need to enable javascript to view this site.</noscript>
     <canvas id="background"></canvas>
 
-    <!-- Welcome -->
+    <!-- |||||| Navigation |||||| -->
+    <nav class="navbar">
+      <div class="nav--container">
+        <a href="#experience" class="nav--link">Experience</a>
+        <a href="#projects" class="nav--link">Projects</a>
+        <a href="#blog" class="nav--link">Blog</a>
+      </div>
+    </nav>
+
+    <!-- |||||| Landing |||||| -->
     <div class="landing">
       <div class="landing--container">
         <div class="landing--container-left" style="background-color: var(--a0);">
@@ -59,25 +68,47 @@
       </div>
     </div>
 
-    <!-- About -->
+    <!-- |||||| About |||||| -->
     <section id="about" class="content about">
-      <h2>About</h2>
-      <p>A short intro about me and what I build.</p>
+
+      <!-- Line -->
+      <div class="line-styling">
+        <div class="style-circle" style="background: var(--a0)"></div>
+        <div class="style-circle" style="background: var(--a0)"></div>
+        <div class="style-circle" style="background: var(--a0)"></div>
+        <div class="style-line" style="background: var(--a0)"></div>
+        <div class="style-circle" style="background: var(--a0)"></div>
+        <div class="style-circle" style="background: var(--a0)"></div>
+        <div class="style-circle" style="background: var(--a0)"></div>
+      </div>
+
+      <!-- Text -->
+      <div class="about-body">
+        <div class="about-description" style="font-weight: 900; background-color: rgb(30,30,30,0.9); border-radius: 10px; padding: 20px;">
+          <h2 style="color: var(--a0)">About</h2>
+          <p style="color: var(--fg0)">A short intro about me and what I build short intro about me and what I build short intro about me and what I build short intro about me and what I build. short intro about me and what I build short intro about me and what I build</p>
+        </div>
+
+        <!-- Image -->
+        <div class="about-img">
+          <img src="assets/pfp.png" alt=""/>
+        </div>
+      </div>
     </section>
 
-    <!-- Education -->
+    <!-- |||||| Education |||||| -->
     <section id="education" class="content education">
       <h2>Education</h2>
       <p>Your education, degrees and institutions.</p>
     </section>
 
-    <!-- Skills -->
+    <!-- |||||| Skills |||||| -->
     <section id="skills" class="content skills">
       <h2>Skills</h2>
       <p>Languages, frameworks and tools I use.</p>
     </section>
 
-    <!-- Experience (populated by srcs/main.ts) -->
+    <!-- |||||| Experience |||||| -->
     <section class="content">
       <h2>Experience</h2>
       <p>Relevant places I've been employed at</p>
@@ -99,7 +130,7 @@
       </div>
     </div>
 
-    <!-- Projects (populated by srcs/main.ts) -->
+    <!-- |||||| Projects |||||| -->
     <section class="content">
       <h2>Projects</h2>
       <p>Some of the projects I've worked on or am proud of</p>
@@ -107,25 +138,25 @@
 
     <div id="project-list" class="card-list"></div>
 
-    <!-- Achievement -->
+    <!-- |||||| Achievement |||||| -->
     <section id="achievement" class="content achievement">
       <h2>Achievements</h2>
       <p>Awards, recognitions, or notable milestones.</p>
     </section>
 
-    <!-- Services -->
+    <!-- |||||| Services |||||| -->
     <section id="services" class="content services">
       <h2>Services</h2>
       <p>What I offer (consulting, development, mentoring, etc.)</p>
     </section>
 
-    <!-- Testimonials -->
+    <!-- |||||| Testimonials |||||| -->
     <section id="testimonials" class="content testimonials">
       <h2>Testimonials</h2>
       <p>Feedback from people I've worked with.</p>
     </section>
 
-    <!-- Blog (populated by srcs/main.ts) -->
+    <!-- |||||| Blog |||||| -->
     <section class="content">
       <h2>Blog</h2>
       <p>Latest posts</p>
@@ -133,13 +164,13 @@
 
     <div id="blog-list" class="card-list"></div>
 
-    <!-- Contacts -->
+    <!-- |||||| Contacts |||||| -->
     <section id="contacts" class="content contacts">
       <h2>Contact</h2>
       <p>Email: you@example.com</p>
       </section>
 
-      <!-- Footer -->
+      <!-- |||||| Footer |||||| -->
       <footer class="footer">
         <p>Made with ❤️ by em1e</p>
       </footer>
