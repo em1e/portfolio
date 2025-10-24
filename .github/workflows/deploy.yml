@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -21,6 +21,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # fetch full history so gh-pages action can create/update branches reliably
+          fetch-depth: 0
+          # make sure the token is available for pushing (this is true by default)
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
