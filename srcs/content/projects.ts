@@ -6,7 +6,7 @@ export const projects: Project[] = [
         name: 'Tetris Clone',
         genre: ['game'],
         description: 'A classic Tetris game clone developed in C++ using the SFML library; includes smooth gameplay, scoring system, and level progression.',
-        technologies: ['cpp', 'sfml', 'cmake'],
+        technologies: ['cpp', 'sfml', 'cmake', 'git'],
         date: '2025-10-25',
         links: [
             {
@@ -102,12 +102,7 @@ export const projects: Project[] = [
         description: 'Software that connects volunteers with people in need of assistance through a user-friendly platform.',
         technologies: ['flutter', 'dart', 'python', 'docker', 'postgresql'],
         date: '2025-01-02',
-        links: [
-            {
-                name: 'GitHub',
-                url: 'https://github.com/em1e/Aidly'
-            }
-        ],
+        links: [],
         hidden: false
     },
     {
