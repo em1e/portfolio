@@ -10,7 +10,7 @@ export const experiences: Experience[] = [
     ongoing: false,
     company_description: "Youthful Impact helps youth ages 14–24 build entrepreneurial, digital, and financial skills to create positive change in their communities.",
     work_description: "Worked as a WordPress developer, optimizing website performance, enhancing user experience through SEO and implementing responsive design.",
-    technologies: ['wp', 'css'],
+    technologies: ['wp'],
     links: [
       { name: "Company Website", url: "https://www.youthfulimpact.org/" }
     ]
