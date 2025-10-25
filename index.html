@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>em1e — portfolio</title>
   <link rel="stylesheet" href="./srcs/style.css" />
   </head>
@@ -135,33 +135,53 @@
       </div>
     </section>
 
+    <section id="about" class="content about">
+      <!-- Line (decorative) -->
+      <div class="line-styling">
+        <!-- <div class="style-circle" style="background: var(--pop)"></div> -->
+        <div class="style-circle" style="background: var(--pop)"></div>
+        <div class="style-circle" style="background: var(--pop)"></div>
 
-    <!-- |||||| Experience |||||| -->
-    <section class="content">
-      <h2>Experience</h2>
-      <p>Relevant places I've been employed at</p>
+        <div class="style-line" style="background: var(--pop)"></div>
+
+        <!-- <div class="style-circle" style="background: var(--pop)"></div> -->
+        <div class="style-circle" style="background: var(--pop)"></div>
+        <div class="style-circle" style="background: var(--pop)"></div>
+      </div>
     </section>
 
-    <div id="experience-list" class="card-list">
-      <div id="card-template" class="card" hidden>
-        <div class="card-timestamp"></div>
-        
-        <div class="card-header">
-          <h2 class="card-title"></h2>
-          <p class="card-description"></p>
-        </div>
 
-        <div class="card-footer">
-          <div class="card-links"></div>
-          <div class="card-langs"></div>
+
+    <!-- |||||| Experience |||||| -->
+    <section id="experience" class="content experience">
+      <div class="experience-body"> 
+        <div class="experience-description">
+          <h1>Experience</h1>
+          <div class="certification-cards">
+              <div id="experience-cards" class="card-list">
+                <div id="card-template" class="card" hidden>
+                  <div class="card-timestamp"></div>
+                
+                  <div class="card-header">
+                    <h2 class="card-title"></h2>
+                    <p class="card-description"></p>
+                  </div>
+
+                  <div class="card-footer">
+                    <div class="card-links"></div>
+                    <div class="card-langs"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- |||||| Skills |||||| -->
     <section id="skills" class="content skills">
       <h2>Skills</h2>
-      <p>Languages, frameworks and tools I use.</p>
+      <div id="skill-cards"></div>
     </section>
 
     <!-- |||||| Projects |||||| -->
