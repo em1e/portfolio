@@ -1,4 +1,5 @@
 import './particles'
+import { renderSkills } from './skills'
 import { projects } from "./content/projects"
 import type { Project } from "./content/projects"
 import type { Experience } from "./content/experience"
@@ -21,7 +22,7 @@ let delay = 50
 document.addEventListener('DOMContentLoaded', () => {
     console.log('[main] DOMContentLoaded handler running')
     projctListElement = document.getElementById('project-list')! as HTMLDivElement
-    experienceListElement = document.getElementById('experience-list')! as HTMLDivElement
+    experienceListElement = document.getElementById('experience-cards')! as HTMLDivElement
     educationListElement = document.getElementById('education-list')! as HTMLDivElement
     certificationListElement = document.getElementById('certification-cards')! as HTMLDivElement
     projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
@@ -37,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     blogs.forEach(addBlog)
     console.log(`[main] blogs.length = ${blogs.length}`)
 
+    renderSkills()
+
     setupHeaderNav()
 
     projectTemplateElement!.remove()
@@ -50,7 +53,7 @@ function setupHeaderNav() {
     nav.className = 'nav'
 
     const links = [
-        { name: 'Experience', href: '#experience-list' },
+        { name: 'Experience', href: '#experience' },
         { name: 'Projects', href: '#project-list' },
         { name: 'Blog', href: '#blog-list' }
     ]

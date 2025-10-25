@@ -1,7 +1,3 @@
-// Initialize the particles animation only once the DOM is ready. In some
-// production builds the module may execute before the <canvas> exists which
-// causes `getElementById` to return null and crash the script. Wrapping the
-// initialization in DOMContentLoaded prevents that.
 document.addEventListener('DOMContentLoaded', () => {
     console.log('[particles] DOMContentLoaded handler running')
     const canvas = document.getElementById('background') as HTMLCanvasElement | null;
@@ -58,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Creates 80 particles on canvas :D
     for (let i = 0; i < 80; i++) {
         particles.push(new Particle());
     }
