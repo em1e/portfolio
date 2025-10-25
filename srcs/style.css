@@ -28,9 +28,8 @@ body {
   color: var(--fg0);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 18px; /* increased base size for readability */
+  font-size: 18px;
   line-height: 1.6;
-  /* ensure content sits below a fixed navbar */
   padding-top: 6.5rem;
 }
 
@@ -44,7 +43,6 @@ a:hover {
   color: var(--a1);
 }
 
-/* Landing / main title — large and responsive */
 h1 {
   color: var(--a0);
   margin-bottom: 1rem;
@@ -54,7 +52,6 @@ h1 {
   letter-spacing: -0.02em;
 }
 
-/* Section headings (use accent color) */
 .content h2 {
   color: var(--a0);
   font-size: clamp(1.8rem, 3.5vw + 1rem, 3rem);
@@ -64,7 +61,6 @@ h1 {
   letter-spacing: -0.01em;
 }
 
-/* Apply accent and surface colors to common section headers and blocks */
 .projects--header h1,
 .blog--header h1,
 .services-header > h1,
@@ -78,7 +74,6 @@ h1 {
   color: var(--a0);
 }
 
-/* Ensure content text uses theme foreground and keep page sections surface-transparent; inner cards use surface variables */
 .content,
 .certification,
 .projects,
@@ -94,7 +89,6 @@ h1 {
   background-color: transparent;
 }
 
-/* Card-like blocks use the surface color */
 .certification-card,
 .education-card,
 .experience-card,
@@ -107,11 +101,9 @@ h1 {
 .blog--viewAll a button,
 .skill--box,
 .card {
-  /* background-color: var(--bg1); */
   color: var(--fg0);
 }
 
-/* Service tiles: use accent for icons/text */
 .single-service {
   background-color: var(--bg1);
   color: var(--fg0);
@@ -120,13 +112,11 @@ h1 {
   color: var(--a0);
 }
 
-/* testimonial review surface */
 .review--content {
   background-color: var(--bg1);
   box-shadow: var(--shadow);
 }
 
-/* footer text muted */
 .footer p {
   color: var(--fg1);
 }
@@ -162,7 +152,6 @@ canvas {
   pointer-events: none;
 }
 
-/* Ensure main content stacks above the particles canvas */
 .head,
 .landing,
 .content,
@@ -246,7 +235,6 @@ html {
 	padding: 1rem;
 }
 
-/* Education-specific: make education cards one per row and full width */
 #education-list.card-list,
 #education .card-list {
   grid-template-columns: 1fr;
@@ -403,7 +391,6 @@ html {
   .card .card-footer { grid-column: 1 / -1; }
 }
 
-/* Expand mobile-style breakpoint so cards switch to stacked/mobile layout earlier */
 @media (max-width: 1300px) {
   .card { grid-template-columns: 1fr; grid-template-rows: auto auto auto; }
   .card .card-timestamp {
@@ -415,19 +402,14 @@ html {
   }
   .card::before { left: 8px; }
   .card .card-footer { grid-column: 1 / -1; }
-  /* ensure card-list becomes single column at this breakpoint */
   .card-list { grid-template-columns: 1fr; }
 }
 
-/* Education: always stack content vertically in this order:
-   date (timestamp), major (title), school (role), description, technologies, links */
 .education-card {
-  /* make card single-column layout - use flex to guarantee vertical stacking */
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch;
   padding: 1.25rem !important;
-  /* allow education cards to size naturally */
   min-height: auto;
   gap: 0.5rem;
 }
@@ -458,7 +440,6 @@ html {
 .education-card .card-langs { order: 1; }
 .education-card .card-links { order: 2; }
 
-/* ensure spacing: put technologies before links visually */
 .education-card .card-langs { margin-bottom: 0.25rem; }
 .education-card .card-links { width: 100%; }
 .card .card-langs {
@@ -485,8 +466,8 @@ html {
 }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Certification/Certification.css */
-/* ------------------------------------------------------------ */
+/* certification */
+
 .certification {
   min-height: 100vh;
   display: flex;
@@ -497,7 +478,6 @@ html {
 }
 
 .certification-body {
-  /* two-column layout: description (left) and cards (right) */
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -529,13 +509,11 @@ html {
   margin-left: 0;
 }
 
-/* Ensure certification card list shows one card per row */
 #certification-cards.card-list,
 .certification-cards > .card-list {
   grid-template-columns: 1fr;
 }
 
-/* left column containing the heading and blurb */
 .certification-description {
   flex: 0.4;
   display: flex;
@@ -556,7 +534,6 @@ html {
   border-radius: 20px;
   margin-bottom: 1.5rem;
   margin-left: 1.5rem;
-  /* transition: background-color 200ms ease-in-out; */
   width: 100%;
   position: relative;
 }
@@ -620,7 +597,6 @@ html {
   border-radius: 10px;
 }
 
-/* Make certification cards' information stack vertically on the left, with the image on the right */
 .certification-card {
   display: flex;
   flex-direction: row;
@@ -637,18 +613,12 @@ html {
   color: var(--fg0);
 }
 
-/* Prevent certification cards from shrinking on hover. A generic
-   `.card:hover p` rule reduces paragraph font-size which also affects
-   certification cards (they reuse the `.card` template). Force the
-   certification paragraph size to the intended value on hover. */
 .certification-card:hover p {
-  font-size: 1.10rem !important; /* enforce non-changing size */
+  font-size: 1.10rem !important;
   line-height: 1.25 !important;
   margin: 0 !important;
 }
 
-/* Ensure certification cards don't animate layout-related properties when hovered. Keep
-   only the background / color transition to avoid jank. */
 .certification-card {
   transition: background-color 180ms ease, color 180ms ease;
   transform: none !important;
@@ -698,11 +668,7 @@ html {
 .certification-card .card-langs { order: 1; margin-bottom: 0.25rem; }
 .certification-card .card-links { order: 2; width: 100%; }
 
-/* --- Mirror of education card styles for certification cards ---
-   Keep certification-specific selectors so you can tweak certs independently
-   of other generic `.card` styles or `.education-card` styles. */
 .certification-card {
-  /* stacked / mobile-friendly default: vertical content order */
   display: flex !important;
   flex-direction: column !important;
   align-items: stretch;
@@ -742,8 +708,6 @@ html {
   color: var(--bg0);
 }
 
-/* ensure certification cards also have the row layout variant similar to
-   the education section when appropriate (desktop larger layouts) */
 .certification-card.row-variant,
 .certification-card.desktop {
   display: flex;
@@ -755,8 +719,6 @@ html {
   padding: 1.5rem;
   border-radius: 20px;
   margin-bottom: 1.5rem;
-  /* transition: background-color 200ms ease-in-out; */
-  /* keep a subtle border like education cards */
   border: 10px solid var(--bg3);
 }
 
@@ -883,8 +845,8 @@ html {
 
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Services */
-/* ------------------------------------------------------------ */
+/* services */
+
 .services {
   min-height: 100vh;
   display: flex;
@@ -997,7 +959,6 @@ html {
   }
 }
 
-/* Single service */
 .single-service {
   box-shadow: 4px 4px 8px rgba(36, 3, 3, 0.2);
   width: 180px;
@@ -1008,7 +969,6 @@ html {
   align-items: center;
   justify-content: center;
   padding: 1.4rem 1.4rem;
-  /* overflow: hidden; */
   transition: transform 300ms ease-in-out;
 }
 
@@ -1028,12 +988,10 @@ html {
 .service-icon {
   position: absolute;
   top: 15%;
-  /* transform: translateY(-50%); */
 }
 
 .service-icon > svg {
   font-size: 2.8rem;
-  /* color: #000000; */
 }
 
 .single-service:hover svg{
@@ -1106,8 +1064,8 @@ html {
 }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Testimonials/Testimonials.css */
-/* ------------------------------------------------------------ */
+/* testimonials */
+
 .testimonials {
   font-family: var(--primaryFont);
   height: 100vh;
@@ -1364,8 +1322,8 @@ html {
 }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Projects/Projects.css */
-/* ------------------------------------------------------------ */
+/* projects */
+
 .projects {
   display: flex;
   flex-direction: column;
@@ -1452,8 +1410,8 @@ html {
 }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Blog/Blog.css */
-/* ------------------------------------------------------------ */
+/* blog */
+
 .blog {
   display: flex;
   flex-direction: column;
@@ -1523,8 +1481,8 @@ html {
 }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Contacts/Contacts.css */
-/* ------------------------------------------------------------ */
+/* contact */
+
 .contacts {
   min-height: 100vh;
   display: flex;
@@ -1817,8 +1775,8 @@ html {
   }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Education/Education.css */
-/* ------------------------------------------------------------ */
+/* education */
+
 .education {
   min-height: 100vh;
   background-color: var(--a0);
@@ -1939,8 +1897,8 @@ html {
 }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Experience/Experience.css */
-/* ------------------------------------------------------------ */
+/* experience */
+
 .experience{
   min-height: 100vh;
 }
@@ -2057,8 +2015,8 @@ html {
 }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Landing/Landing.css */
-/* ------------------------------------------------------------ */
+/* landing */
+
 .landing {
   height: 70vh;
   display: flex;
@@ -2116,7 +2074,6 @@ html {
 .landing--container-right {
   flex: 65%;
   height: 100%;
-  /* background-color: #eaeaea; */
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -2128,7 +2085,7 @@ html {
   margin-right: 7rem;
   font-family: var(--primaryFont);
   font-style: normal;
-  font-weight: 700; /* make text bold */
+  font-weight: 700;
 }
 
 .lcr--content h6 {
@@ -2201,7 +2158,6 @@ html {
 }
 
 @media (max-width: 600px) {
-  /* match the JS breakpoint behavior: make resume wider and hide contact on very small screens */
   .resumeBtn {
     width: 180px;
   }
@@ -2223,8 +2179,7 @@ html {
 
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Navbar/Navbar.css */
-/* ------------------------------------------------------------ */
+/* navbar */
 .navbar {
   height: 6.5rem;
   position: fixed;
@@ -2237,7 +2192,6 @@ html {
   justify-content: right;
   padding-right: 1rem;
   width: 100%;
-  /* box-shadow: 0 4px 12px rgba(0,0,0,0.25); */
 }
 
 .navbar--container {
@@ -2249,16 +2203,15 @@ html {
   margin-top: 0;
 }
 
-/* fill the area under the fixed navbar so no gap shows when scrolling */
 body::before {
   content: '';
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 6.5rem; /* match .navbar height */
+  height: 6.5rem;
   background: var(--a0);
-  z-index: 0; /* keep under content but below navbar */
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -2283,8 +2236,7 @@ body::before {
 }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Footer/Footer.css */
-/* ------------------------------------------------------------ */
+/* footer */
 .footer {
   font-family: 'var(--primaryFont)', sans-serif;
   height: 60px;
@@ -2301,8 +2253,7 @@ body::before {
 }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/About/About.css */
-/* ------------------------------------------------------------ */
+/* about */
 .about {
   margin-bottom: 8rem;
   position: relative;
@@ -2393,7 +2344,6 @@ body::before {
   border-radius: 10px;
 }
 
-/* small translucent panel used in a few places */
 .panel {
   background-color: rgba(30,30,30,0.9);
   border-radius: 10px;
@@ -2454,9 +2404,7 @@ body::before {
     .about-description{
         flex: 0.6;
         box-sizing: border-box;
-        /* padding: 5% 10%; */
         padding: 20px;
-
     }
 
     .about-description > h2 {
@@ -2513,8 +2461,7 @@ body::before {
 }
 
 /* ------------------------------------------------------------ */
-/* Styles imported from developer-portfolio/src/components/Skills/Skills.css */
-/* ------------------------------------------------------------ */
+/* skills */
 .skills {
   display: flex;
   flex-direction: column;
@@ -2589,11 +2536,3 @@ body::before {
 .marquee {
   padding: 3rem 0;
 }
-
-/* ------------------------------------------------------------ */
-/* Blue dark theme (maps values from developer-portfolio/src/theme/theme.js blueThemeDark)
-  To enable: add `data-theme="blue-dark"` to the <html> or <body> element.
-  Example: <html data-theme="blue-dark"> or document.documentElement.setAttribute('data-theme','blue-dark')
-*/
-
-
