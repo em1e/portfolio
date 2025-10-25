@@ -29,19 +29,6 @@ export const experiences: Experience[] = [
     ]
   },
   {
-    id: "violetsmc",
-    title: "Content Manager & Developer",
-    company: "Violets",
-    startDate: "2023-12-18",
-    ongoing: true,
-    company_description: "The best community and economy based Minecraft server.",
-    work_description: "Managing and developing content for the community, ensuring a unique and engaging user experience.",
-    technologies: ['java', 'json', 'yaml'],
-    links: [
-      { name: "Email", url: "mailto:ryan@violetsmc.com" }
-    ]
-  },
-  {
     id: "haven",
     title: "Waitress",
     company: "Hotel Haven",
