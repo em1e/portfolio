@@ -36,7 +36,7 @@ export function renderSkills(): void {
   const entries = (Object.entries(counts) as Array<[TechKey, number]>).sort((a, b) => b[1] - a[1])
   if (entries.length === 0) return
 
-  const skillsSection = document.getElementById('skill-cards')
+  const skillsSection = document.getElementById('skills')
   if (!skillsSection) return
 
   const existing = document.getElementById('skills-list')
