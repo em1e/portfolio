@@ -2,6 +2,21 @@ import type { technologies } from "./technologies";
 
 export const projects: Project[] = [
     {
+        id: 'tetris',
+        name: 'Tetris Clone',
+        genre: ['game'],
+        description: 'A classic Tetris game clone developed in C++ using the SFML library; includes smooth gameplay, scoring system, and level progression.',
+        technologies: ['cpp', 'sfml', 'cmake'],
+        date: '2025-10-25',
+        links: [
+            {
+                name: 'GitHub',
+                url: 'https://github.com/em1e/Tetris'
+            }
+        ],
+        hidden: false
+    },
+    {
         id: 'jobcord',
         name: 'JobCord',
         genre: ['automation', 'data'],
@@ -75,11 +90,7 @@ export const projects: Project[] = [
         links: [
             {
                 name: 'GitHub',
-                url: 'https://github.com/em1e/EasyConfigs'
-            },
-            {
-                name: 'Website',
-                url: 'https://easyconfigs.com'
+                url: 'https://github.com/LucasOpoka/transcendence'
             }
         ],
         hidden: false
@@ -89,7 +100,7 @@ export const projects: Project[] = [
         name: 'Aidly',
         genre: ['web', 'mobile'],
         description: 'Software that connects volunteers with people in need of assistance through a user-friendly platform.',
-        technologies: ['flutter', 'dart', 'python', 'cpp', 'docker', 'postgresql'],
+        technologies: ['flutter', 'dart', 'python', 'docker', 'postgresql'],
         date: '2025-01-02',
         links: [
             {
@@ -148,13 +159,13 @@ export const projects: Project[] = [
         id: 'cpp_modules',
         name: 'C++ Modules',
         genre: ['other'],
-        description: 'a collection of 10 C++ modules that taught me all the basics of C++ programming, from simple I/O to complex data structures and algorithms.',
+        description: 'A collection of 10 C++ modules that taught me all the basics of C++ programming, from simple I/O to complex data structures and algorithms.',
         technologies: ['cpp'],
         date: '2024-07-17',
         links: [
             {
                 name: 'GitHub',
-                url: 'https://github.com/em1e/irc'
+                url: 'https://github.com/em1e/42_cpp_modules'
             }
         ],
         hidden: false
@@ -165,7 +176,7 @@ export const projects: Project[] = [
         genre: ['other'],
         description: 'A simple minecraft plugin, created to learn the basics of plugin development with the Bukkit API.',
         technologies: ['java'],
-        date: '2024-07-17',
+        date: '2024-07-04',
         links: [
             {
                 name: 'GitHub',
@@ -200,6 +211,25 @@ export const projects: Project[] = [
             {
                 name: 'GitHub',
                 url: 'https://github.com/em1e/solong'
+            }
+        ],
+        hidden: false
+    },
+    {
+        id: '3d_sphere',
+        name: '3D Sphere',
+        genre: ['web'],
+        description: 'Interactive 3D sphere created with JavaScript and three.js.',
+        technologies: ['js', 'threejs'],
+        date: '2022-12-27',
+        links: [
+            {
+                name: 'GitHub',
+                url: 'https://github.com/em1e/3d-rgb-sphere'
+            },
+            {
+                name: 'Website',
+                url: 'https://rbgsphere.netlify.app/'
             }
         ],
         hidden: false

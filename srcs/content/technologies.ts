@@ -138,6 +138,11 @@ export const tech = {
         name: 'Dart',
         type: 'language',
         icon: 'dart'
+    },
+    threejs: {
+        name: 'three.js',
+        type: 'library',
+        icon: 'threedotjs'
     }
 }
 

@@ -2,6 +2,59 @@ import type { technologies } from "./technologies";
 
 export const experiences: Experience[] = [
   {
+    id: "hexagon",
+    title: "Event Coordinator",
+    company: "Hexagon RY",
+    startDate: "2024-01-22",
+    endDate: "2025-02-15",
+    company_description: "Hive Helsinki student organization.",
+    work_description: "Organizing events and managing communications for the student organization.",
+    technologies: [],
+    links: [
+      { name: "Instagram", url: "https://www.instagram.com/hive_hexagon/" }
+    ]
+  },
+  {
+    id: "citybox",
+    title: "Housekeeper",
+    company: "Citybox Helsinki",
+    startDate: "2024-01-15",
+    endDate: "2024-06-30",
+    company_description: "Citybox Helsinki is a modern, budget-friendly hotel located in the city center, known for its self-service check-in and eco-friendly practices.",
+    work_description: "Maintained cleanliness and orderliness of guest rooms and common areas, ensuring a comfortable stay for all guests.",
+    technologies: [],
+    links: [
+      { name: "Website", url: "https://cityboxhotels.com/hotels/helsinki/helsinki" },
+      { name: "Email", url: "mailto:helsinki@cityboxhotels.com" }
+    ]
+  },
+  {
+    id: "violetsmc",
+    title: "Content Manager & Developer",
+    company: "Violets",
+    startDate: "2023-12-18",
+    ongoing: true,
+    company_description: "The best community and economy based Minecraft server.",
+    work_description: "Managing and developing content for the community, ensuring a unique and engaging user experience.",
+    technologies: ['java', 'json', 'yaml'],
+    links: [
+      { name: "Email", url: "mailto:ryan@violetsmc.com" }
+    ]
+  },
+  {
+    id: "haven",
+    title: "Waitress",
+    company: "Hotel Haven",
+    startDate: "2023-12-05",
+    endDate: "2024-04-30",
+    company_description: "An elegant hotel located in the heart of Helsinki, offering a blend of modern luxury and classic elegance.",
+    work_description: "Provided exceptional dining service to guests, ensuring a memorable culinary experience.",
+    technologies: [],
+    links: [
+      { name: "Website", url: "https://www.hotelhaven.fi/en/" }
+    ]
+  },
+  {
     id: "youtfulimpact",
     title: "Web Developer",
     company: "Youthful Impact",
@@ -12,20 +65,35 @@ export const experiences: Experience[] = [
     work_description: "Worked as a WordPress developer, optimizing website performance, enhancing user experience through SEO and implementing responsive design.",
     technologies: ['wp'],
     links: [
-      { name: "Company Website", url: "https://www.youthfulimpact.org/" }
+      { name: "Website", url: "https://www.youthfulimpact.org/" }
     ]
   },
   {
-    id: "violetsmc",
-    title: "Content Manager | Developer",
-    company: "VioletsMC",
-    startDate: "2023-12-02",
-    ongoing: true,
-    company_description: "The best community and economy based Minecraft server.",
-    work_description: "The most advanced Minecraft Towny server.",
-    technologies: ["python", "docker"],
+    id: "lasipalatsi",
+    title: "Cafe Worker",
+    company: "Cafe Lasipalatsi",
+    startDate: "2022-09-12",
+    endDate: "2023-02-28",
+    ongoing: false,
+    company_description: "Cafe Lasipalatsi is a popular cafe located in the Lasipalatsi building in Helsinki, known for its cozy atmosphere and delicious pastries.",
+    work_description: "Provided excellent customer service, prepared and served food and beverages, and maintained cleanliness in the cafe.",
+    technologies: [],
     links: [
-      { name: "OpenAI", url: "https://openai.com" }
+      { name: "Website", url: "https://www.raflaamo.fi/en/restaurant/helsinki/cafe-lasipalatsi" }
+    ]
+  },
+  {
+    id: "nuortenääni",
+    title: "Journalist & photographer",
+    company: "Nuorten Ääni-toimitus",
+    startDate: "2017-09-01",
+    endDate: "2020-03-31",
+    ongoing: false,
+    company_description: "Nuorten Ääni is a youth group based in Helsinki, focusing on topics that young people find important.",
+    work_description: "Wrote articles and took photographs, covering various topics.",
+    technologies: [],
+    links: [
+      { name: "Website", url: "https://nuorten.hel.fi/nuorisotalot/nuorten-aani/" }
     ]
   }
 ]
