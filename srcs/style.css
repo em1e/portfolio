@@ -107,7 +107,7 @@ h1 {
 .blog--viewAll a button,
 .skill--box,
 .card {
-  background-color: var(--bg1);
+  /* background-color: var(--bg1); */
   color: var(--fg0);
 }
 
@@ -556,7 +556,7 @@ html {
   border-radius: 20px;
   margin-bottom: 1.5rem;
   margin-left: 1.5rem;
-  transition: background-color 200ms ease-in-out;
+  /* transition: background-color 200ms ease-in-out; */
   width: 100%;
   position: relative;
 }
@@ -567,7 +567,6 @@ html {
   align-items: flex-start;
   justify-content: space-around;
   width: 65%;
-   
 }
 
 .certcard-details2 {
@@ -628,6 +627,36 @@ html {
   align-items: flex-start;
   gap: 1rem;
 }
+
+.certification-card:hover {
+  background-color: var(--pop);
+}
+
+.certification-card:hover h2, .certification-card:hover p,
+.certification-card:hover .card-role, .certification-card:hover .card-timestamp {
+  color: var(--fg0);
+}
+
+/* Prevent certification cards from shrinking on hover. A generic
+   `.card:hover p` rule reduces paragraph font-size which also affects
+   certification cards (they reuse the `.card` template). Force the
+   certification paragraph size to the intended value on hover. */
+.certification-card:hover p {
+  font-size: 1.10rem !important; /* enforce non-changing size */
+  line-height: 1.25 !important;
+  margin: 0 !important;
+}
+
+/* Ensure certification cards don't animate layout-related properties when hovered. Keep
+   only the background / color transition to avoid jank. */
+.certification-card {
+  transition: background-color 180ms ease, color 180ms ease;
+  transform: none !important;
+}
+.certification-card:hover {
+  transform: none !important;
+}
+
 
 .certification-card .certcard-content {
   order: 1;
@@ -708,6 +737,11 @@ html {
 .certification-card .card-langs { order: 1; }
 .certification-card .card-links { order: 2; width: 100%; }
 
+.certification-card .card-links:hover a button {
+  background: var(--fg0);
+  color: var(--bg0);
+}
+
 /* ensure certification cards also have the row layout variant similar to
    the education section when appropriate (desktop larger layouts) */
 .certification-card.row-variant,
@@ -721,7 +755,7 @@ html {
   padding: 1.5rem;
   border-radius: 20px;
   margin-bottom: 1.5rem;
-  transition: background-color 200ms ease-in-out;
+  /* transition: background-color 200ms ease-in-out; */
   /* keep a subtle border like education cards */
   border: 10px solid var(--bg3);
 }
@@ -813,14 +847,13 @@ html {
   .certcard-imgcontainer {
     width: 30%;
     display: flex;
-     justify-content: center;
+    justify-content: center;
   }
 
   .certcard-imgcontainer > img {
     width: 80px;
     height: 70px;
   }
-    
 }
 
 @media screen and (max-width: 600px) {
