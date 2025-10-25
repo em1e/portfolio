@@ -128,11 +128,21 @@ export const tech = {
         name: 'node.js',
         type: 'library',
         icon: 'nodedotjs'
+    },
+    flutter: {
+        name: 'Flutter',
+        type: 'library',
+        icon: 'flutter'
+    },
+    dart: {
+        name: 'Dart',
+        type: 'language',
+        icon: 'dart'
     }
 }
 
 // NOTE FOR SELF: when adding a new technology, check link below first:
 // https://github.com/simple-icons/simple-icons/blob/master/slugs.md
-// if not found, then add a new icon into /assets
+// if not iconfound, then add a new icon into /assets
 
 export type technologies = keyof typeof tech
