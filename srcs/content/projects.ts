@@ -6,7 +6,7 @@ export const projects: Project[] = [
         name: 'Tetris Clone',
         genre: ['game'],
         description: 'A classic Tetris game clone developed in C++ using the SFML library; includes smooth gameplay, scoring system, and level progression.',
-        technologies: ['cpp', 'sfml', 'cmake', 'git'],
+        technologies: ['cpp', 'sfml', 'cmake', 'git', 'md'],
         date: '2025-10-25',
         links: [
             {
@@ -36,7 +36,7 @@ export const projects: Project[] = [
         name: 'YoutubeTrends',
         genre: ['automation', 'data'],
         description: 'Automated data pipeline for fetching YouTube trending videos and loading them into a database.',
-        technologies: ['python', 'docker', 'postgresql', 'airflow', 'git'],
+        technologies: ['python', 'docker', 'postgresql', 'airflow', 'git', 'md'],
         date: '2025-10-14',
         links: [
             {

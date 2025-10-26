@@ -42,8 +42,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupHeaderNav()
 
+    contactForm()
+
     projectTemplateElement!.remove()
 })
+
+export function contactForm(): void {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null
+    if (!form) return
+
+    const submitBtn = document.getElementById('contact-submit') as HTMLButtonElement | null
+    const submitText = document.getElementById('submit-text') as HTMLElement | null
+    const sendIcon = document.querySelector('.send-icon') as HTMLElement | null
+    const successIcon = document.querySelector('.success-icon') as HTMLElement | null
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if (submitBtn) submitBtn.disabled = true
+
+        if (sendIcon) {
+            sendIcon.style.animation = 'fly 0.8s linear both'
+            sendIcon.style.position = 'absolute'
+        }
+
+        if (successIcon) {
+            successIcon.style.display = 'inline-flex'
+            setTimeout(() => { successIcon.style.opacity = '1' }, 50)
+        }
+
+        if (submitText) submitText.textContent = 'Sent'
+    })
+}
 
 function setupHeaderNav() {
     const header = document.querySelector('.header') as HTMLDivElement | null
@@ -193,11 +222,11 @@ function addExperience(experience: Experience, index: number) {
     const range = experience.ongoing ? `current - ${start}` : (end ? `${start} - ${end}` : start)
 
     timestampElement.textContent = range
-    nameElement.textContent = `${experience.company}`
+    nameElement.textContent = `${experience.title}`
 
     const roleElement = document.createElement('p')
     roleElement.className = 'card-role'
-    roleElement.textContent = experience.title
+    roleElement.textContent = experience.company
     headerEl.insertBefore(roleElement, descriptionElement)
 
     descriptionElement.textContent = experience.company_description

@@ -92,7 +92,7 @@ h1 {
 
 .certification-card,
 .education-card,
-.experience-card,
+.experience-cards,
 .single-service,
 .review--content,
 .certcard-content,
@@ -266,12 +266,17 @@ html {
   to { opacity: 1; }
 }
 
-.card:hover {
+.experience-cards .card:hover {
   background-color: var(--bg2);
 }
 
+
+.card:hover {
+  background-color: var(--pop);
+}
+
 .card:hover h2 {
-  color: var(--pop);
+  color: var(--fg0);
 }
 
 .card:hover .card-role, 
@@ -280,7 +285,7 @@ html {
 }
 
 .card:hover .card-timestamp {
-  color: var(--fg2);
+  color: var(--fg0);
 }
 
 .card h2 {
@@ -346,8 +351,8 @@ html {
 }
 
 .card .card-links a button:hover {
-  background: var(--pop);
-  color: var(--fg0);
+  background: var(--fg0);
+  color: var(--bg1);
   padding: 0.5rem 1.3rem;
   font-size: 0.9rem;
   border-radius: 999px;
@@ -1634,20 +1639,6 @@ html {
   font-size: 3.5rem;
 }
 
-.experience-card {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  width: 100%;
-  padding: 1.25rem;
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
-  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
-  transition: box-shadow 200ms ease, transform 200ms ease, background-color 200ms ease;
-}
-
 .expcard-img {
   flex: 0 0 64px;
   width: 64px;
@@ -1693,12 +1684,6 @@ html {
   font-weight: 500;
   margin: 0;
   color: var(--fg1);
-}
-
-.experience-card:hover {
-  box-shadow: 0 18px 36px rgba(0,0,0,0.28);
-  transform: translateY(-6px);
-  background-color: var(--bg2);
 }
 
 @media screen and (max-width: 800px) {

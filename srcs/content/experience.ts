@@ -48,7 +48,7 @@ export const experiences: Experience[] = [
     startDate: "2023-03-01",
     endDate: "2023-07-31",
     ongoing: false,
-    company_description: "Youthful Impact helps youth ages 14–24 build entrepreneurial, digital, and financial skills to create positive change in their communities.",
+    company_description: "They Help youth ages 14–24 build entrepreneurial, digital, and financial skills to create positive change in their communities.",
     work_description: "Worked as a WordPress developer, optimizing website performance, enhancing user experience through SEO and implementing responsive design.",
     technologies: ['wp'],
     links: [

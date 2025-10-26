@@ -8,7 +8,7 @@ export const education: Education[] = [
 		startDate: "2025-09",
 		ongoing: true,
 		description: "Studies have focused on Python, Docker, and GitLab, and are meant to be manageable alongside full-time work. The program emphasizes practical, project-based learning and hands-on use of advanced resources.",
-		technologies: ['python', 'docker', 'git', 'airflow', 'postgresql'],
+		technologies: ['python', 'docker', 'git', 'airflow', 'postgresql', 'md'],
 		url: "https://kamk.fi/en/"
 	},
 	{
@@ -18,7 +18,7 @@ export const education: Education[] = [
 		startDate: "2023-10",
 		endDate: "2025-07",
 		description: "Studies focused on C, C++, and Web development, through project-based learning with peer-to-peer collaboration. Gained experience with CI/CD Pipelines, memory management, VMs, IP networking, game development, and more.",
-		technologies: ['c', 'cpp', 'html', 'css', 'js', 'python', 'wp', 'docker', 'git', 'linux', 'nginx', 'mariadb'],
+		technologies: ['c', 'cpp', 'html', 'css', 'js', 'python', 'wp', 'docker', 'git', 'linux', 'nginx', 'mariadb', 'md'],
 		url: "https://www.hive.fi/"
 	},
 	{
