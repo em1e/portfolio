@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=0.75">
     <title>em1e — portfolio</title>
   <link rel="stylesheet" href="./srcs/style.css" />
   </head>
@@ -151,8 +151,20 @@
 
     <!-- |||||| Testimonials |||||| -->
     <section id="testimonials" class="content testimonials">
-      <h2>Testimonials</h2>
-      <p>Feedback from people I've worked with.</p>
+      <div class="testimonials--header">
+        <h1>What people say</h1>
+      </div>
+
+      <div class="testimonials--body">
+        <div id="testimonials-slider" class="testimonials--slider"></div>
+
+        <div class="testimonials-controls">
+          <button class="prevBtn" aria-label="Previous testimonial">‹</button>
+          <button class="nextBtn" aria-label="Next testimonial">›</button>
+        </div>
+
+        <div id="testimonials-dots" class="testimonials-dots"></div>
+      </div>
     </section>
 
 
@@ -198,12 +210,18 @@
     </section>
 
     <!-- |||||| Blog |||||| -->
-    <section id="blog" class="content">
-      <h2>Blog</h2>
-      <p>Latest posts</p>
+    <section id="blog" class="content blog-section">
+      <div class="blog-header panel">
+        <span class="badge">Latest Updates</span>
+        <h2 class="blog-heading">Blog Posts</h2>
+        <p class="blog-description">Discover the latest trends, tips, and best practices in modern web development. From UI components to design systems, stay updated with our expert insights.</p>
+        <a class="blog-cta" href="#">View all articles →</a>
+      </div>
+
+      <div id="blog-list" class="card-list blog-grid"></div>
     </section>
 
-    <div id="blog-list" class="card-list"></div>
+    
 
   <!-- |||||| Contacts |||||| -->
   <section id="contacts" class="content contacts">

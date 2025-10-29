@@ -11,12 +11,15 @@ import { blogs } from "./content/blogs";
 import { certifications } from "./content/certifications";
 import type { Certification } from "./content/certifications"
 import type { Blog } from "./content/blogs";
+import { testimonials } from "./content/testimonials";
 
 let projctListElement: HTMLDivElement | null = null
 let experienceListElement: HTMLDivElement | null = null
 let educationListElement: HTMLDivElement | null = null
 let certificationListElement: HTMLDivElement | null = null
+let blogListElement: HTMLDivElement | null = null
 let projectTemplateElement: HTMLTemplateElement | null = null
+let testimonialSliderElement: HTMLDivElement | null = null
 let delay = 50
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,8 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     projctListElement = document.getElementById('project-list')! as HTMLDivElement
     experienceListElement = document.getElementById('experience-cards')! as HTMLDivElement
     educationListElement = document.getElementById('education-list')! as HTMLDivElement
+    blogListElement = document.getElementById('blog-list')! as HTMLDivElement
     certificationListElement = document.getElementById('certification-cards')! as HTMLDivElement
     projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
+    testimonialSliderElement = document.getElementById('testimonials-slider')! as HTMLDivElement
 
     projects.forEach(addProject)
     console.log(`[main] projects.length = ${projects.length}`)
@@ -37,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log(`[main] certifications.length = ${certifications.length}`)
     blogs.forEach(addBlog)
     console.log(`[main] blogs.length = ${blogs.length}`)
+
+    renderTestimonials()
 
     renderSkills()
 
@@ -153,11 +160,9 @@ function addProject(project: Project, index: number) {
     projctListElement!.appendChild(newProject)
 }
 
-    const blogListElement = document.getElementById('blog-list') as HTMLDivElement | null
-
-    function addBlog(blog: Blog) {
+    function addBlog(blog: Blog, index: number) {
         if (!blogListElement) return
-    const newCard = projectTemplateElement!.cloneNode(true) as HTMLDivElement
+        const newCard = projectTemplateElement!.cloneNode(true) as HTMLDivElement
 
         const timestampElement = newCard.querySelector('.card-timestamp')! as HTMLDivElement
         const nameElement = newCard.querySelector('.card-title')! as HTMLHeadingElement
@@ -196,6 +201,10 @@ function addProject(project: Project, index: number) {
             header.insertBefore(img, header.firstChild)
         }
 
+        newCard.removeAttribute('id')
+        newCard.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
+        newCard.classList.add('blog-card')
+        blogListElement.appendChild(newCard)
     }
 
 function addExperience(experience: Experience, index: number) {
@@ -406,4 +415,89 @@ function addCertification(cert: Certification, index: number) {
     newCard.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
     newCard.classList.add('certification-card')
     certificationListElement.appendChild(newCard)
+}
+
+function renderTestimonials(): void {
+    const slider = document.getElementById('testimonials-slider') as HTMLDivElement | null
+    const dotsContainer = document.getElementById('testimonials-dots') as HTMLDivElement | null
+    const prevBtn = document.querySelector('.prevBtn') as HTMLButtonElement | null
+    const nextBtn = document.querySelector('.nextBtn') as HTMLButtonElement | null
+    if (!slider || !dotsContainer) return
+
+    slider.innerHTML = ''
+    dotsContainer.innerHTML = ''
+
+    testimonials.forEach((t, i) => {
+        const slide = document.createElement('div')
+        slide.className = 'single--testimony'
+
+        const imgWrap = document.createElement('div')
+        imgWrap.className = 'review--img'
+        if (t.avatar) {
+            const img = document.createElement('img')
+            img.setAttribute('src', t.avatar)
+            img.setAttribute('alt', t.name)
+            imgWrap.appendChild(img)
+        }
+
+        const content = document.createElement('div')
+        content.className = 'review--content'
+
+        const quote = document.createElement('p')
+        quote.textContent = t.quote
+
+        const who = document.createElement('h3')
+        who.textContent = t.name
+
+        const role = document.createElement('div')
+        role.className = 'role'
+        role.textContent = t.role || ''
+
+        content.appendChild(quote)
+        content.appendChild(who)
+        content.appendChild(role)
+
+        slide.appendChild(imgWrap)
+        slide.appendChild(content)
+
+        // hide all slides initially
+        slide.style.display = 'none'
+
+        slider.appendChild(slide)
+
+        const dot = document.createElement('button')
+        dot.setAttribute('aria-label', `Show testimonial ${i + 1}`)
+        if (i === 0) dot.classList.add('active')
+        dot.addEventListener('click', () => showSlide(i))
+        dotsContainer.appendChild(dot)
+    })
+
+    let current = 0
+    let timer: number | undefined = undefined
+
+    function showSlide(idx: number) {
+    const slides = Array.from(slider!.children) as HTMLDivElement[]
+        slides.forEach((s, i) => {
+            s.style.display = i === idx ? 'flex' : 'none'
+        })
+    const dots = Array.from(dotsContainer!.children) as HTMLButtonElement[]
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx))
+        current = idx
+        resetTimer()
+    }
+
+    function prev() { showSlide((current - 1 + testimonials.length) % testimonials.length) }
+    function next() { showSlide((current + 1) % testimonials.length) }
+
+    if (prevBtn) prevBtn.addEventListener('click', prev)
+    if (nextBtn) nextBtn.addEventListener('click', next)
+
+    function resetTimer() {
+        if (timer) window.clearInterval(timer)
+        timer = window.setInterval(() => { next() }, 6000)
+    }
+
+    // start
+    showSlide(0)
+    resetTimer()
 }
