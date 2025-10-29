@@ -1,17 +1,19 @@
 import './particles'
-import { renderSkills } from './skills'
-import { projects } from "./content/projects"
-import type { Project } from "./content/projects"
-import type { Experience } from "./content/experience"
-import { experiences } from "./content/experience"
-import { education } from "./content/education"
-import type { Education } from "./content/education"
-import { tech } from "./content/technologies"
-import { blogs } from "./content/blogs";
+
+import { tech } from "./content/technologies";
+import { education } from "./content/education";
 import { certifications } from "./content/certifications";
-import type { Certification } from "./content/certifications"
+import { renderSkills } from './skills';
+import { projects } from "./content/projects";
+import { testimonials } from "./content/testimonials"
+import { experiences } from "./content/experience";
+import { blogs } from "./content/blogs";
+
+import type { Education } from "./content/education";
+import type { Certification } from "./content/certifications";
+import type { Project } from "./content/projects";
+import type { Experience } from "./content/experience";
 import type { Blog } from "./content/blogs";
-import { testimonials } from "./content/testimonials";
 
 let projctListElement: HTMLDivElement | null = null
 let experienceListElement: HTMLDivElement | null = null
@@ -24,6 +26,7 @@ let delay = 50
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('[main] DOMContentLoaded handler running')
+
     projctListElement = document.getElementById('project-list')! as HTMLDivElement
     experienceListElement = document.getElementById('experience-cards')! as HTMLDivElement
     educationListElement = document.getElementById('education-list')! as HTMLDivElement
@@ -32,23 +35,17 @@ document.addEventListener('DOMContentLoaded', () => {
     projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
     testimonialSliderElement = document.getElementById('testimonials-slider')! as HTMLDivElement
 
+    // runs add functions for each in the arrays
     projects.forEach(addProject)
-    console.log(`[main] projects.length = ${projects.length}`)
     experiences.forEach(addExperience)
-    console.log(`[main] experiences.length = ${experiences.length}`)
     education.slice(0, 3).forEach(addEducation)
-    console.log(`[main] educationToShow = ${Math.min(3, education.length)}`)
     certifications.forEach(addCertification)
-    console.log(`[main] certifications.length = ${certifications.length}`)
     blogs.forEach(addBlog)
-    console.log(`[main] blogs.length = ${blogs.length}`)
 
-    renderTestimonials()
-
-    renderSkills()
-
+    // runs set up functions once
     setupHeaderNav()
-
+    renderSkills()
+    renderTestimonials()
     contactForm()
 
     projectTemplateElement!.remove()
