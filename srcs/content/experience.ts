@@ -2,6 +2,19 @@ import type { technologies } from "./technologies";
 
 export const experiences: Experience[] = [
   {
+    id: "violets",
+    title: "Project Manager & Developer",
+    company: "Violets (freelance)",
+    startDate: "2023-12-11",
+    endDate: "2025-10-31",
+    company_description: "An online gaming community of 6,000+ members. Delivering engaging custom content and iterating based on user feedback.",
+    work_description: "Created custom content, managed end-tp-end project management, lead recruitment and handled complaints. Developed training protocals, documentation systems and workflow softwares.",
+    technologies: [],
+    links: [
+      { name: "reference", url: "https://www.linkedin.com/in/ryan-cockburn/" }
+    ]
+  },
+  {
     id: "hexagon",
     title: "Event Coordinator",
     company: "Hexagon RY",
@@ -44,7 +57,7 @@ export const experiences: Experience[] = [
   {
     id: "youtfulimpact",
     title: "Web Developer",
-    company: "Youthful Impact",
+    company: "Youthful Impact (freelance)",
     startDate: "2023-03-01",
     endDate: "2023-07-31",
     ongoing: false,

@@ -227,7 +227,25 @@ function addExperience(experience: Experience, index: number) {
     const end = formatYYYYMM(experience.endDate) || ''
     const range = experience.ongoing ? `current - ${start}` : (end ? `${start} - ${end}` : start)
 
-    timestampElement.textContent = range
+    const computeDuration = (startDate?: string, endDate?: string, ongoing?: boolean) => {
+        if (!startDate) return ''
+        const s = new Date(startDate)
+        const e = ongoing ? new Date() : (endDate ? new Date(endDate) : new Date())
+        if (isNaN(s.getTime()) || isNaN(e.getTime())) return ''
+        let totalMonths = (e.getFullYear() - s.getFullYear()) * 12 + (e.getMonth() - s.getMonth())
+        if (totalMonths < 0) totalMonths = 0
+        const years = Math.floor(totalMonths / 12)
+        const months = totalMonths % 12
+        const parts: string[] = []
+        if (years > 0) parts.push(`${years} yr${years > 1 ? 's' : ''}`)
+        if (months > 0) parts.push(`${months} mo${months > 1 ? 's' : ''}`)
+        if (parts.length === 0) return 'less than a month'
+        return parts.join(' ')
+    }
+
+    const durationText = experience.ongoing ? 'ongoing' : computeDuration(experience.startDate, experience.endDate, experience.ongoing)
+
+    timestampElement.textContent = durationText ? `${range} • ${durationText}` : range
     nameElement.textContent = `${experience.title}`
 
     const roleElement = document.createElement('p')
@@ -441,7 +459,11 @@ function renderTestimonials(): void {
         content.className = 'review--content'
 
         const quote = document.createElement('p')
-        quote.textContent = t.quote
+        t.quote.forEach(q => {
+            const para = document.createElement('p')
+            para.textContent = q
+            quote.appendChild(para)
+        })
 
         const who = document.createElement('h3')
         who.textContent = t.name

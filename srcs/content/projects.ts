@@ -66,6 +66,25 @@ export const projects: Project[] = [
         hidden: false
     },
     {
+        id: 'portfolio',
+        name: 'This Portfolio',
+        genre: ['web'],
+        description: 'Built this personal portfolio from scratch to showcase my projects, experience, and skills, built to be responsive, engaging to users, visually appealing, and easy to edit.',
+        technologies: ['ts', 'git'],
+        date: '2025-08-09',
+        links: [
+            {
+                name: 'GitHub',
+                url: 'https://github.com/em1e/portfolio'
+            },
+            {
+                name: 'Website',
+                url: 'https://em1e.github.io/portfolio/'
+            }
+        ],
+        hidden: false
+    },
+    {
         id: 'inception',
         name: 'Inception',
         genre: ['other'],
@@ -100,7 +119,7 @@ export const projects: Project[] = [
         name: 'Aidly',
         genre: ['web', 'mobile'],
         description: 'Software that connects volunteers with people in need of assistance through a user-friendly platform.',
-        technologies: ['flutter', 'dart', 'python', 'docker', 'postgresql'],
+        technologies: ['flutter', 'dart', 'python', 'docker', 'postgresql', 'git'],
         date: '2025-01-02',
         links: [],
         hidden: false
