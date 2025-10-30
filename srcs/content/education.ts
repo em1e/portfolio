@@ -3,7 +3,7 @@ import type { technologies } from "./technologies";
 export const education: Education[] = [
 	{
 		id: "kamk",
-		major: "Bachelor’s Degree in Information Technology",
+		major: "Bachelor’s Degree in Information Technology (Data Science)",
 		school: "Kajaani University of Applied Sciences, Online",
 		startDate: "2025-09",
 		ongoing: true,

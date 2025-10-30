@@ -476,10 +476,51 @@ function renderTestimonials(): void {
         content.appendChild(who)
         content.appendChild(role)
 
+        // optional contact buttons (render only when fields are provided)
+        const contactsContainer = document.createElement('div')
+        contactsContainer.className = 'testimonials-contacts'
+
+        if (t.linkedin) {
+            const a = document.createElement('a')
+            a.className = 'card-link'
+            a.setAttribute('href', t.linkedin)
+            a.setAttribute('target', '_blank')
+            a.setAttribute('rel', 'noopener noreferrer')
+            const btn = document.createElement('button')
+            btn.textContent = 'LinkedIn'
+            a.appendChild(btn)
+            contactsContainer.appendChild(a)
+        }
+
+        if (t.github) {
+            const a = document.createElement('a')
+            a.className = 'card-link'
+            a.setAttribute('href', t.github)
+            a.setAttribute('target', '_blank')
+            a.setAttribute('rel', 'noopener noreferrer')
+            const btn = document.createElement('button')
+            btn.textContent = 'GitHub'
+            a.appendChild(btn)
+            contactsContainer.appendChild(a)
+        }
+
+        if (t.portfolio) {
+            const a = document.createElement('a')
+            a.className = 'card-link'
+            a.setAttribute('href', t.portfolio)
+            a.setAttribute('target', '_blank')
+            a.setAttribute('rel', 'noopener noreferrer')
+            const btn = document.createElement('button')
+            btn.textContent = 'Portfolio'
+            a.appendChild(btn)
+            contactsContainer.appendChild(a)
+        }
+
+        if (contactsContainer.children.length > 0) content.appendChild(contactsContainer)
+
         slide.appendChild(imgWrap)
         slide.appendChild(content)
 
-        // hide all slides initially
         slide.style.display = 'none'
 
         slider.appendChild(slide)

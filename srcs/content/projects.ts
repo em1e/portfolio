@@ -9,10 +9,10 @@ export const projects: Project[] = [
         technologies: ['cpp', 'sfml', 'cmake', 'git', 'md'],
         date: '2025-10-25',
         links: [
-            {
-                name: 'GitHub',
-                url: 'https://github.com/em1e/Tetris'
-            }
+            // {
+            //     name: 'GitHub',
+            //     url: 'https://github.com/em1e/Tetris'
+            // }
         ],
         hidden: false
     },
@@ -24,10 +24,10 @@ export const projects: Project[] = [
         technologies: ['ts', 'python', 'docker', 'postgresql', 'airflow', 'git'],
         date: '2025-10-22',
         links: [
-            {
-                name: 'GitHub',
-                url: 'https://github.com/em1e/JobCord'
-            }
+            // {
+            //     name: 'GitHub',
+            //     url: 'https://github.com/em1e/JobCord'
+            // }
         ],
         hidden: false
     },
@@ -107,10 +107,10 @@ export const projects: Project[] = [
         technologies: ['js', 'json'],
         date: '2025-02-03',
         links: [
-            {
-                name: 'GitHub',
-                url: 'https://github.com/LucasOpoka/transcendence'
-            }
+            // {
+            //     name: 'GitHub',
+            //     url: 'https://github.com/LucasOpoka/transcendence'
+            // }
         ],
         hidden: false
     },
