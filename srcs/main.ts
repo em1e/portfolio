@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     blogListElement = document.getElementById('blog-list')! as HTMLDivElement
     certificationListElement = document.getElementById('certification-cards')! as HTMLDivElement
     projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
-    // testimonials slider is accessed inside renderTestimonials() when needed
 
     // runs add functions for each in the arrays
     projects.forEach(addProject)
@@ -253,6 +252,23 @@ function addExperience(experience: Experience, index: number) {
     headerEl.insertBefore(roleElement, descriptionElement)
 
     descriptionElement.textContent = experience.company_description
+
+    if (experience.work_description && experience.work_description.length > 0) {
+        const existingJobDesc = newExp.querySelector('.card-jobdesc') as HTMLParagraphElement | null
+        if (existingJobDesc)
+            existingJobDesc.textContent = experience.work_description
+        else
+        {
+            const jobDescElement = document.createElement('p')
+            jobDescElement.className = 'card-jobdesc'
+            jobDescElement.textContent = experience.work_description
+
+            if (descriptionElement && typeof descriptionElement.insertAdjacentElement === 'function')
+                descriptionElement.insertAdjacentElement('afterend', jobDescElement)
+            else if (headerEl)
+                headerEl.appendChild(jobDescElement)
+        }
+    }
 
     if (experience.links && experience.links.length > 0) {
         experience.links.forEach(link => {

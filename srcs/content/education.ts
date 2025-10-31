@@ -7,7 +7,7 @@ export const education: Education[] = [
 		school: "Kajaani University of Applied Sciences, Online",
 		startDate: "2025-09",
 		ongoing: true,
-		description: "Studies have focused on Python, Docker, and GitLab, and are meant to be manageable alongside full-time work. The program emphasizes practical, project-based learning and hands-on use of advanced resources.",
+		description: "Studies have focused on Python, Docker, and GitLab, and I take evening classes so this is meant to be manageable alongside full-time work. The program emphasizes practical, project-based learning and hands-on use of advanced resources.",
 		technologies: ['python', 'docker', 'git', 'airflow', 'postgresql', 'md'],
 		url: "https://kamk.fi/en/"
 	},

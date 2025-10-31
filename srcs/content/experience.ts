@@ -3,13 +3,13 @@ import type { technologies } from "./technologies";
 export const experiences: Experience[] = [
   {
     id: "violets",
-    title: "Project Manager & Developer",
+    title: "Content Manager & Developer",
     company: "Violets (freelance)",
     startDate: "2023-12-11",
     endDate: "2025-10-31",
     company_description: "An online gaming community of 6,000+ members. Delivering engaging custom content and iterating based on user feedback.",
-    work_description: "Created custom content, managed end-tp-end project management, lead recruitment and handled complaints. Developed training protocals, documentation systems and workflow softwares.",
-    technologies: [],
+    work_description: "Created custom content for users, managed end-to-end project management, oversaw 5 teams, acted as head of recruitment, and handled complaints. Developed training protocals, documentation systems and workflow softwares.",
+    technologies: ['java', 'yaml', 'ts', 'js'],
     links: [
       { name: "reference", url: "https://www.linkedin.com/in/ryan-cockburn/" }
     ]
@@ -21,7 +21,7 @@ export const experiences: Experience[] = [
     startDate: "2024-01-22",
     endDate: "2025-02-15",
     company_description: "Hive Helsinki student organization.",
-    work_description: "Organizing events and managing communications for the student organization.",
+    work_description: "Organized events for the student organization.",
     technologies: [],
     links: [
       { name: "Instagram", url: "https://www.instagram.com/hive_hexagon/" }
@@ -34,7 +34,7 @@ export const experiences: Experience[] = [
     startDate: "2024-01-15",
     endDate: "2024-06-30",
     company_description: "Citybox Helsinki is a modern, budget-friendly hotel located in the city center, known for its self-service check-in and eco-friendly practices.",
-    work_description: "Maintained cleanliness and orderliness of guest rooms and common areas, ensuring a comfortable stay for all guests.",
+    work_description: "Maintained cleanliness and orderliness of rooms and common areas, ensuring a comfortable stay for all guests.",
     technologies: [],
     links: [
       { name: "Website", url: "https://cityboxhotels.com/hotels/helsinki/helsinki" },
@@ -48,7 +48,7 @@ export const experiences: Experience[] = [
     startDate: "2023-12-05",
     endDate: "2024-04-30",
     company_description: "An elegant hotel located in the heart of Helsinki, offering a blend of modern luxury and classic elegance.",
-    work_description: "Provided exceptional dining service to guests, ensuring a memorable culinary experience.",
+    work_description: "Provided exceptional dining service to guests, ensuring a memorable breakfast experience.",
     technologies: [],
     links: [
       { name: "Website", url: "https://www.hotelhaven.fi/en/" }
@@ -56,13 +56,13 @@ export const experiences: Experience[] = [
   },
   {
     id: "youtfulimpact",
-    title: "Web Developer",
+    title: "WordPress Developer",
     company: "Youthful Impact (freelance)",
     startDate: "2023-03-01",
     endDate: "2023-07-31",
     ongoing: false,
     company_description: "They Help youth ages 14–24 build entrepreneurial, digital, and financial skills to create positive change in their communities.",
-    work_description: "Worked as a WordPress developer, optimizing website performance, enhancing user experience through SEO and implementing responsive design.",
+    work_description: "Worked as a WordPress developer: optimizing website performance, enhancing user experience through SEO and implementing responsive design.",
     technologies: ['wp'],
     links: [
       { name: "Website", url: "https://www.youthfulimpact.org/" }
@@ -85,12 +85,12 @@ export const experiences: Experience[] = [
   {
     id: "nuortenääni",
     title: "Journalist & photographer",
-    company: "Nuorten Ääni-toimitus",
+    company: "Nuorten Ääni-toimitus (hobby)",
     startDate: "2017-09-01",
     endDate: "2020-03-31",
     ongoing: false,
     company_description: "Nuorten Ääni is a youth group based in Helsinki, focusing on topics that young people find important.",
-    work_description: "Wrote articles and took photographs, covering various topics.",
+    work_description: "Wrote articles and took photographs, covering various topics relevant to youth culture, issues and interests.",
     technologies: [],
     links: [
       { name: "Website", url: "https://nuorten.hel.fi/nuorisotalot/nuorten-aani/" }

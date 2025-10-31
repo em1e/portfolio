@@ -311,6 +311,20 @@ html {
   color: var(--bg2);
 }
 
+.card .card-jobdesc {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.28s ease, opacity 0.2s ease;
+  margin-top: 0.5rem;
+  color: var(--bg2);
+}
+
+.card:hover .card-jobdesc {
+  max-height: 600px;
+  opacity: 1;
+}
+
 .card .card-role {
   font-size: 0.95rem;
   color: var(--bg2);

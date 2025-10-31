@@ -69,7 +69,7 @@ export const projects: Project[] = [
         id: 'portfolio',
         name: 'This Portfolio',
         genre: ['web'],
-        description: 'Built this personal portfolio from scratch to showcase my projects, experience, and skills, built to be responsive, engaging to users, visually appealing, and easy to edit.',
+        description: 'Built this personal portfolio from scratch to showcase my projects, experience, and skills. It is built to be responsive, engaging to users, visually appealing, and easy to edit.',
         technologies: ['ts', 'git'],
         date: '2025-08-09',
         links: [
