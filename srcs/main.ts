@@ -21,7 +21,6 @@ let educationListElement: HTMLDivElement | null = null
 let certificationListElement: HTMLDivElement | null = null
 let blogListElement: HTMLDivElement | null = null
 let projectTemplateElement: HTMLTemplateElement | null = null
-let testimonialSliderElement: HTMLDivElement | null = null
 let delay = 50
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     blogListElement = document.getElementById('blog-list')! as HTMLDivElement
     certificationListElement = document.getElementById('certification-cards')! as HTMLDivElement
     projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
-    testimonialSliderElement = document.getElementById('testimonials-slider')! as HTMLDivElement
+    // testimonials slider is accessed inside renderTestimonials() when needed
 
     // runs add functions for each in the arrays
     projects.forEach(addProject)
