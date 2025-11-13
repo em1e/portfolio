@@ -491,7 +491,6 @@ function renderTestimonials(): void {
         content.appendChild(who)
         content.appendChild(role)
 
-        // optional contact buttons (render only when fields are provided)
         const contactsContainer = document.createElement('div')
         contactsContainer.className = 'testimonials-contacts'
 

@@ -2,21 +2,6 @@ import type { technologies } from "./technologies";
 
 export const projects: Project[] = [
     {
-        id: 'tetris',
-        name: 'Tetris Clone',
-        genre: ['game'],
-        description: 'A classic Tetris game clone developed in C++ using the SFML library; includes smooth gameplay, scoring system, and level progression.',
-        technologies: ['cpp', 'sfml', 'cmake', 'git', 'md'],
-        date: '2025-10-25',
-        links: [
-            // {
-            //     name: 'GitHub',
-            //     url: 'https://github.com/em1e/Tetris'
-            // }
-        ],
-        hidden: false
-    },
-    {
         id: 'jobcord',
         name: 'JobCord',
         genre: ['automation', 'data'],
