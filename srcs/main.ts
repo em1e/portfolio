@@ -52,16 +52,21 @@ document.addEventListener('DOMContentLoaded', () => {
 // NAV ---------------------------------------------
 
 function setupHeaderNav() {
-    const header = document.querySelector('.header') as HTMLDivElement | null
-    if (!header) return
+    const navbar = document.querySelector('.navbar') as HTMLDivElement | null
+    if (!navbar) return
 
     const nav = document.createElement('nav')
     nav.className = 'nav'
 
     const links = [
-        { name: 'Experience', href: '#experience' },
+        { name: 'Home', href: '#' },
+        { name: 'About', href: '#about' },
+        { name: 'Education', href: '#education-list' },
+        { name: 'Certificates', href: '#certification-cards' },
+        { name: 'Skills', href: '#skills' },
         { name: 'Projects', href: '#project-list' },
-        { name: 'Blog', href: '#blog-list' }
+        { name: 'Testimonials', href: '#testimonials-slider' },
+        { name: 'Experience', href: '#experience-cards' }
     ]
 
     links.forEach(l => {
@@ -71,13 +76,17 @@ function setupHeaderNav() {
         a.className = 'nav-link'
         a.addEventListener('click', (e) => {
             e.preventDefault()
+            if (l.href === '#' || l.href === '#top') {
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+                return
+            }
             const el = document.querySelector(l.href)
             if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
         })
         nav.appendChild(a)
     })
 
-    header.appendChild(nav)
+    navbar.appendChild(nav)
 }
 
 // CONTACT ---------------------------------------------

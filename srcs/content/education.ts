@@ -9,7 +9,7 @@ export const education: Education[] = [
 		ongoing: true,
 		description: "Studies have focused on Python, Docker, and GitLab, and I take evening classes so this is meant to be manageable alongside full-time work. The program emphasizes practical, project-based learning and hands-on use of advanced resources.",
 		technologies: ['python', 'docker', 'git', 'airflow', 'postgresql', 'md'],
-		url: "https://kamk.fi/en/"
+		url: "https://kamk.fi/koulutukset/tieto-ja-viestintatekniikan-insinoori-datasta-tekoalyyn-paakaupunkiseutu-monimuoto/"
 	},
 	{
 		id: "hive",

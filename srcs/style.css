@@ -24,7 +24,7 @@ html {
   --a0-30: #544E684d;
   --pop: #D08159;
   --pop2: #FFAA5E;
-  --nav: #203C56;
+  --nav: #112232;
 
   margin: 0;
   padding: 0;
@@ -208,23 +208,6 @@ canvas {
 
 .content {
   padding: 1rem;
-}
-
-.nav {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.nav-link {
-  color: var(--fg0);
-  padding: 0.5rem 0.8rem;
-  border-radius: 6px;
-}
-
-.nav-link:hover {
-  background: var(--bg2);
-  transform: translateY(-2px);
 }
 
 html {
@@ -2075,16 +2058,32 @@ html {
   justify-content: right;
   padding-right: 1rem;
   width: 100%;
+  box-shadow: 0 5px 4px rgba(0, 0, 0, 0.1);
 }
 
-.nav--link {
+.nav {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.nav-link {
   color: var(--fg0);
-  padding-right: 2rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  font-family: var(--primaryFont);
+  font-size: 1.05rem;
+  color: var(--fg0);
+  padding: 0.5rem 1rem;
+  /* border-radius: 8px; */
 }
 
-.nav--link:hover {
-  color: var(--pop);
+.nav-link:hover {
+  background: var(--bg2);
+  transform: translateY(-2px);
+  color: var(--fg0);
 }
+
 
 /* ------------------------------------------------------------ */
 /* footer */

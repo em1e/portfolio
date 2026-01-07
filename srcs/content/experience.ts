@@ -2,16 +2,19 @@ import type { technologies } from "./technologies";
 
 export const experiences: Experience[] = [
   {
-    id: "violets",
-    title: "Content Manager & Developer",
-    company: "Violets (freelance)",
-    startDate: "2023-12-11",
+    id: "freelance",
+    title: "Software Developer & Project Manager",
+    company: "Freelance",
+    startDate: "2023-03-06",
     endDate: "2025-10-31",
-    company_description: "An online gaming community of 6,000+ members. Delivering engaging custom content and iterating based on user feedback.",
-    work_description: "Created custom content for users, managed end-to-end project management, oversaw 5 teams, acted as head of recruitment, and handled complaints. Developed training protocals, documentation systems and workflow softwares.",
-    technologies: ['java', 'yaml', 'ts', 'js'],
+    company_description: "Worked in long and short term projects, as a developer, QA tester and project manager.",
+    work_description: "Clients include: Blocky.so, Gamiffynia, Youthful Impact, Violets",
+    technologies: ['java', 'yaml', 'ts', 'wp', 'react', 'docker', 'git', 'python', 'md'],
     links: [
-      { name: "reference", url: "https://www.linkedin.com/in/ryan-cockburn/" }
+      { name: "Reference", url: "https://www.linkedin.com/in/ryan-cockburn/" },
+      { name: "Bocky.so", url: "https://blocky.so/" },
+      { name: "YouthfulImpact", url: "https://www.youthfulimpact.org/" },
+      { name: "Gamiffynia", url: "https://gamiffynia.com/" }
     ]
   },
   {
@@ -52,20 +55,6 @@ export const experiences: Experience[] = [
     technologies: [],
     links: [
       { name: "Website", url: "https://www.hotelhaven.fi/en/" }
-    ]
-  },
-  {
-    id: "youtfulimpact",
-    title: "WordPress Developer",
-    company: "Youthful Impact (freelance)",
-    startDate: "2023-03-01",
-    endDate: "2023-07-31",
-    ongoing: false,
-    company_description: "They Help youth ages 14–24 build entrepreneurial, digital, and financial skills to create positive change in their communities.",
-    work_description: "Worked as a WordPress developer: optimizing website performance, enhancing user experience through SEO and implementing responsive design.",
-    technologies: ['wp'],
-    links: [
-      { name: "Website", url: "https://www.youthfulimpact.org/" }
     ]
   },
   {
