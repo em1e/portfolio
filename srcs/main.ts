@@ -49,32 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
     projectTemplateElement!.remove()
 })
 
-export function contactForm(): void {
-    const form = document.getElementById('contact-form') as HTMLFormElement | null
-    if (!form) return
-
-    const submitBtn = document.getElementById('contact-submit') as HTMLButtonElement | null
-    const submitText = document.getElementById('submit-text') as HTMLElement | null
-    const sendIcon = document.querySelector('.send-icon') as HTMLElement | null
-    const successIcon = document.querySelector('.success-icon') as HTMLElement | null
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault()
-        if (submitBtn) submitBtn.disabled = true
-
-        if (sendIcon) {
-            sendIcon.style.animation = 'fly 0.8s linear both'
-            sendIcon.style.position = 'absolute'
-        }
-
-        if (successIcon) {
-            successIcon.style.display = 'inline-flex'
-            setTimeout(() => { successIcon.style.opacity = '1' }, 50)
-        }
-
-        if (submitText) submitText.textContent = 'Sent'
-    })
-}
+// NAV ---------------------------------------------
 
 function setupHeaderNav() {
     const header = document.querySelector('.header') as HTMLDivElement | null
@@ -105,208 +80,36 @@ function setupHeaderNav() {
     header.appendChild(nav)
 }
 
-function addProject(project: Project, index: number) {
-    console.debug(`[main] addProject: ${project.id} (index=${index})`)
-    const newProject = projectTemplateElement!.cloneNode(true) as HTMLDivElement
+// CONTACT ---------------------------------------------
 
-    const timestampElement = newProject.querySelector('.card-timestamp')! as HTMLDivElement
-    const nameElement = newProject.querySelector('.card-title')! as HTMLHeadingElement
-    const descriptionElement = newProject.querySelector('.card-description')! as HTMLParagraphElement
-    const linkElement = newProject.querySelector('.card-links')! as HTMLAnchorElement
-    const languageElement = newProject.querySelector('.card-langs')! as HTMLDivElement
+export function contactForm(): void {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null
+    if (!form) return
 
-    timestampElement.textContent = project.date
-    nameElement.textContent = project.name
-    descriptionElement.textContent = project.description
+    const submitBtn = document.getElementById('contact-submit') as HTMLButtonElement | null
+    const submitText = document.getElementById('submit-text') as HTMLElement | null
+    const sendIcon = document.querySelector('.send-icon') as HTMLElement | null
+    const successIcon = document.querySelector('.success-icon') as HTMLElement | null
 
-    if (project.links.length > 0) {
-        project.links.forEach(link => {
-            const newLink = document.createElement('a')
-            newLink.className = 'card-link'
-            newLink.setAttribute('href', link.url)
-            newLink.setAttribute('target', '_blank')
-            newLink.setAttribute('rel', 'noopener noreferrer')
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if (submitBtn) submitBtn.disabled = true
 
-            const buttonElement = document.createElement('button')
-            buttonElement.textContent = link.name
+        if (sendIcon) {
+            sendIcon.style.animation = 'fly 0.8s linear both'
+            sendIcon.style.position = 'absolute'
+        }
 
-            newLink.appendChild(buttonElement)
-            linkElement.appendChild(newLink)
-        })
-    } else {
-        const note = document.createElement('p')
-        note.textContent = 'No links available :('
-        note.className = 'note'
-        linkElement.appendChild(note)
-    }
+        if (successIcon) {
+            successIcon.style.display = 'inline-flex'
+            setTimeout(() => { successIcon.style.opacity = '1' }, 50)
+        }
 
-    project.technologies.forEach(langName => {
-        const lang = tech[langName]
-        if (!lang) return
-        const langElement = document.createElement('img')
-        langElement.setAttribute('src', `https://cdn.simpleicons.org/${lang.icon}`)
-        langElement.setAttribute('alt', lang.name)
-        languageElement.appendChild(langElement)
+        if (submitText) submitText.textContent = 'Sent'
     })
-
-    newProject.removeAttribute('id')
-    newProject.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
-    if (project.hidden) newProject.style.display = 'none'
-    projctListElement!.appendChild(newProject)
 }
 
-    function addBlog(blog: Blog, index: number) {
-        if (!blogListElement) return
-        const newCard = projectTemplateElement!.cloneNode(true) as HTMLDivElement
-
-        const timestampElement = newCard.querySelector('.card-timestamp')! as HTMLDivElement
-        const nameElement = newCard.querySelector('.card-title')! as HTMLHeadingElement
-        const descriptionElement = newCard.querySelector('.card-description')! as HTMLParagraphElement
-        const linkElement = newCard.querySelector('.card-links')! as HTMLAnchorElement
-
-        timestampElement.textContent = blog.date
-        nameElement.textContent = blog.title
-        descriptionElement.textContent = blog.description
-
-        if (blog.url) {
-            const a = document.createElement('a')
-            a.className = 'card-link'
-            a.setAttribute('href', blog.url)
-            a.setAttribute('target', '_blank')
-            a.setAttribute('rel', 'noopener noreferrer')
-            const btn = document.createElement('button')
-            btn.textContent = 'Read'
-            a.appendChild(btn)
-            linkElement.appendChild(a)
-        } else {
-            const note = document.createElement('p')
-            note.textContent = 'No link'
-            note.className = 'note'
-            linkElement.appendChild(note)
-        }
-
-        if (blog.image) {
-            const img = document.createElement('img')
-            img.setAttribute('src', blog.image)
-            img.setAttribute('alt', blog.title)
-            img.style.width = '100%'
-            img.style.borderRadius = '6px'
-            img.style.marginBottom = '0.5rem'
-            const header = newCard.querySelector('.card-header')!
-            header.insertBefore(img, header.firstChild)
-        }
-
-        newCard.removeAttribute('id')
-        newCard.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
-        newCard.classList.add('blog-card')
-        blogListElement.appendChild(newCard)
-    }
-
-function addExperience(experience: Experience, index: number) {
-    const newExp = projectTemplateElement!.cloneNode(true) as HTMLDivElement
-
-    const timestampElement = newExp.querySelector('.card-timestamp')! as HTMLDivElement
-    const nameElement = newExp.querySelector('.card-title')! as HTMLHeadingElement
-    const descriptionElement = newExp.querySelector('.card-description')! as HTMLParagraphElement
-    const linkElement = newExp.querySelector('.card-links')! as HTMLAnchorElement
-    const languageElement = newExp.querySelector('.card-langs')! as HTMLDivElement
-    const headerEl = newExp.querySelector('.card-header')! as HTMLDivElement
-
-    const formatYYYYMM = (dateStr?: string) => {
-        if (!dateStr) return undefined
-        const d = new Date(dateStr)
-        if (isNaN(d.getTime())) return dateStr
-        const yyyy = d.getFullYear()
-        const mm = String(d.getMonth() + 1).padStart(2, '0')
-        return `${mm}/${yyyy}`
-    }
-
-    const start = formatYYYYMM(experience.startDate) || ''
-    const end = formatYYYYMM(experience.endDate) || ''
-    const range = experience.ongoing ? `current - ${start}` : (end ? `${start} - ${end}` : start)
-
-    const computeDuration = (startDate?: string, endDate?: string, ongoing?: boolean) => {
-        if (!startDate) return ''
-        const s = new Date(startDate)
-        const e = ongoing ? new Date() : (endDate ? new Date(endDate) : new Date())
-        if (isNaN(s.getTime()) || isNaN(e.getTime())) return ''
-        let totalMonths = (e.getFullYear() - s.getFullYear()) * 12 + (e.getMonth() - s.getMonth())
-        if (totalMonths < 0) totalMonths = 0
-        const years = Math.floor(totalMonths / 12)
-        const months = totalMonths % 12
-        const parts: string[] = []
-        if (years > 0) parts.push(`${years} yr${years > 1 ? 's' : ''}`)
-        if (months > 0) parts.push(`${months} mo${months > 1 ? 's' : ''}`)
-        if (parts.length === 0) return 'less than a month'
-        return parts.join(' ')
-    }
-
-    const durationText = experience.ongoing ? 'ongoing' : computeDuration(experience.startDate, experience.endDate, experience.ongoing)
-
-    timestampElement.textContent = durationText ? `${range} • ${durationText}` : range
-    nameElement.textContent = `${experience.title}`
-
-    const roleElement = document.createElement('p')
-    roleElement.className = 'card-role'
-    roleElement.textContent = experience.company
-    headerEl.insertBefore(roleElement, descriptionElement)
-
-    descriptionElement.textContent = experience.company_description
-
-    if (experience.work_description && experience.work_description.length > 0) {
-        const existingJobDesc = newExp.querySelector('.card-jobdesc') as HTMLParagraphElement | null
-        if (existingJobDesc)
-            existingJobDesc.textContent = experience.work_description
-        else
-        {
-            const jobDescElement = document.createElement('p')
-            jobDescElement.className = 'card-jobdesc'
-            jobDescElement.textContent = experience.work_description
-
-            if (descriptionElement && typeof descriptionElement.insertAdjacentElement === 'function')
-                descriptionElement.insertAdjacentElement('afterend', jobDescElement)
-            else if (headerEl)
-                headerEl.appendChild(jobDescElement)
-        }
-    }
-
-    if (experience.links && experience.links.length > 0) {
-        experience.links.forEach(link => {
-            const newLink = document.createElement('a')
-            newLink.className = 'card-link'
-            newLink.setAttribute('href', link.url)
-            newLink.setAttribute('target', '_blank')
-            newLink.setAttribute('rel', 'noopener noreferrer')
-
-            const buttonElement = document.createElement('button')
-            buttonElement.textContent = link.name
-
-            newLink.appendChild(buttonElement)
-            linkElement.appendChild(newLink)
-        })
-    } else {
-        const note = document.createElement('p')
-        note.textContent = 'No links available :('
-        note.className = 'note'
-        linkElement.appendChild(note)
-    }
-
-    if (experience.technologies && experience.technologies.length > 0) {
-        experience.technologies.forEach(langName => {
-            const lang = tech[langName]
-            if (!lang) return
-            const langElement = document.createElement('img')
-            langElement.setAttribute('src', `https://cdn.simpleicons.org/${lang.icon}`)
-            langElement.setAttribute('alt', lang.name)
-            languageElement.appendChild(langElement)
-        })
-    }
-
-    newExp.removeAttribute('id')
-    newExp.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
-
-    experienceListElement!.appendChild(newExp)
-}
+// EDUCATION ---------------------------------------------
 
 function addEducation(ed: Education, index: number) {
     if (!educationListElement) return
@@ -375,6 +178,8 @@ function addEducation(ed: Education, index: number) {
     newCard.classList.add('education-card')
     educationListElement.appendChild(newCard)
 }
+
+// CERTIFICATIONS ---------------------------------------------
 
 function addCertification(cert: Certification, index: number) {
     if (!certificationListElement) return
@@ -446,6 +251,60 @@ function addCertification(cert: Certification, index: number) {
     newCard.classList.add('certification-card')
     certificationListElement.appendChild(newCard)
 }
+
+// PROJECTS ---------------------------------------------
+
+function addProject(project: Project, index: number) {
+    console.debug(`[main] addProject: ${project.id} (index=${index})`)
+    const newProject = projectTemplateElement!.cloneNode(true) as HTMLDivElement
+
+    const timestampElement = newProject.querySelector('.card-timestamp')! as HTMLDivElement
+    const nameElement = newProject.querySelector('.card-title')! as HTMLHeadingElement
+    const descriptionElement = newProject.querySelector('.card-description')! as HTMLParagraphElement
+    const linkElement = newProject.querySelector('.card-links')! as HTMLAnchorElement
+    const languageElement = newProject.querySelector('.card-langs')! as HTMLDivElement
+
+    timestampElement.textContent = project.date
+    nameElement.textContent = project.name
+    descriptionElement.textContent = project.description
+
+    if (project.links.length > 0) {
+        project.links.forEach(link => {
+            const newLink = document.createElement('a')
+            newLink.className = 'card-link'
+            newLink.setAttribute('href', link.url)
+            newLink.setAttribute('target', '_blank')
+            newLink.setAttribute('rel', 'noopener noreferrer')
+
+            const buttonElement = document.createElement('button')
+            buttonElement.textContent = link.name
+
+            newLink.appendChild(buttonElement)
+            linkElement.appendChild(newLink)
+        })
+    } else {
+        const note = document.createElement('p')
+        note.textContent = 'No links available :('
+        note.className = 'note'
+        linkElement.appendChild(note)
+    }
+
+    project.technologies.forEach(langName => {
+        const lang = tech[langName]
+        if (!lang) return
+        const langElement = document.createElement('img')
+        langElement.setAttribute('src', `https://cdn.simpleicons.org/${lang.icon}`)
+        langElement.setAttribute('alt', lang.name)
+        languageElement.appendChild(langElement)
+    })
+
+    newProject.removeAttribute('id')
+    newProject.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
+    if (project.hidden) newProject.style.display = 'none'
+    projctListElement!.appendChild(newProject)
+}
+
+// TESTIMONIALS ---------------------------------------------
 
 function renderTestimonials(): void {
     const slider = document.getElementById('testimonials-slider') as HTMLDivElement | null
@@ -574,4 +433,161 @@ function renderTestimonials(): void {
     // start
     showSlide(0)
     resetTimer()
+}
+
+// EXPERIENCE ---------------------------------------------
+
+function addExperience(experience: Experience, index: number) {
+    const newExp = projectTemplateElement!.cloneNode(true) as HTMLDivElement
+
+    const timestampElement = newExp.querySelector('.card-timestamp')! as HTMLDivElement
+    const nameElement = newExp.querySelector('.card-title')! as HTMLHeadingElement
+    const descriptionElement = newExp.querySelector('.card-description')! as HTMLParagraphElement
+    const linkElement = newExp.querySelector('.card-links')! as HTMLAnchorElement
+    const languageElement = newExp.querySelector('.card-langs')! as HTMLDivElement
+    const headerEl = newExp.querySelector('.card-header')! as HTMLDivElement
+
+    const formatYYYYMM = (dateStr?: string) => {
+        if (!dateStr) return undefined
+        const d = new Date(dateStr)
+        if (isNaN(d.getTime())) return dateStr
+        const yyyy = d.getFullYear()
+        const mm = String(d.getMonth() + 1).padStart(2, '0')
+        return `${mm}/${yyyy}`
+    }
+
+    const start = formatYYYYMM(experience.startDate) || ''
+    const end = formatYYYYMM(experience.endDate) || ''
+    const range = experience.ongoing ? `current - ${start}` : (end ? `${start} - ${end}` : start)
+
+    const computeDuration = (startDate?: string, endDate?: string, ongoing?: boolean) => {
+        if (!startDate) return ''
+        const s = new Date(startDate)
+        const e = ongoing ? new Date() : (endDate ? new Date(endDate) : new Date())
+        if (isNaN(s.getTime()) || isNaN(e.getTime())) return ''
+        let totalMonths = (e.getFullYear() - s.getFullYear()) * 12 + (e.getMonth() - s.getMonth())
+        if (totalMonths < 0) totalMonths = 0
+        const years = Math.floor(totalMonths / 12)
+        const months = totalMonths % 12
+        const parts: string[] = []
+        if (years > 0) parts.push(`${years} yr${years > 1 ? 's' : ''}`)
+        if (months > 0) parts.push(`${months} mo${months > 1 ? 's' : ''}`)
+        if (parts.length === 0) return 'less than a month'
+        return parts.join(' ')
+    }
+
+    const durationText = experience.ongoing ? 'ongoing' : computeDuration(experience.startDate, experience.endDate, experience.ongoing)
+
+    timestampElement.textContent = durationText ? `${range} • ${durationText}` : range
+    nameElement.textContent = `${experience.title}`
+
+    const roleElement = document.createElement('p')
+    roleElement.className = 'card-role'
+    roleElement.textContent = experience.company
+    headerEl.insertBefore(roleElement, descriptionElement)
+
+    descriptionElement.textContent = experience.company_description
+
+    if (experience.work_description && experience.work_description.length > 0) {
+        const existingJobDesc = newExp.querySelector('.card-jobdesc') as HTMLParagraphElement | null
+        if (existingJobDesc)
+            existingJobDesc.textContent = experience.work_description
+        else
+        {
+            const jobDescElement = document.createElement('p')
+            jobDescElement.className = 'card-jobdesc'
+            jobDescElement.textContent = experience.work_description
+
+            if (descriptionElement && typeof descriptionElement.insertAdjacentElement === 'function')
+                descriptionElement.insertAdjacentElement('afterend', jobDescElement)
+            else if (headerEl)
+                headerEl.appendChild(jobDescElement)
+        }
+    }
+
+    if (experience.links && experience.links.length > 0) {
+        experience.links.forEach(link => {
+            const newLink = document.createElement('a')
+            newLink.className = 'card-link'
+            newLink.setAttribute('href', link.url)
+            newLink.setAttribute('target', '_blank')
+            newLink.setAttribute('rel', 'noopener noreferrer')
+
+            const buttonElement = document.createElement('button')
+            buttonElement.textContent = link.name
+
+            newLink.appendChild(buttonElement)
+            linkElement.appendChild(newLink)
+        })
+    } else {
+        const note = document.createElement('p')
+        note.textContent = 'No links available :('
+        note.className = 'note'
+        linkElement.appendChild(note)
+    }
+
+    if (experience.technologies && experience.technologies.length > 0) {
+        experience.technologies.forEach(langName => {
+            const lang = tech[langName]
+            if (!lang) return
+            const langElement = document.createElement('img')
+            langElement.setAttribute('src', `https://cdn.simpleicons.org/${lang.icon}`)
+            langElement.setAttribute('alt', lang.name)
+            languageElement.appendChild(langElement)
+        })
+    }
+
+    newExp.removeAttribute('id')
+    newExp.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
+
+    experienceListElement!.appendChild(newExp)
+}
+
+// BLOG ---------------------------------------------
+
+function addBlog(blog: Blog, index: number) {
+    if (!blogListElement) return
+    const newCard = projectTemplateElement!.cloneNode(true) as HTMLDivElement
+
+    const timestampElement = newCard.querySelector('.card-timestamp')! as HTMLDivElement
+    const nameElement = newCard.querySelector('.card-title')! as HTMLHeadingElement
+    const descriptionElement = newCard.querySelector('.card-description')! as HTMLParagraphElement
+    const linkElement = newCard.querySelector('.card-links')! as HTMLAnchorElement
+
+    timestampElement.textContent = blog.date
+    nameElement.textContent = blog.title
+    descriptionElement.textContent = blog.description
+
+    if (blog.url) {
+        const a = document.createElement('a')
+        a.className = 'card-link'
+        a.setAttribute('href', blog.url)
+        a.setAttribute('target', '_blank')
+        a.setAttribute('rel', 'noopener noreferrer')
+        const btn = document.createElement('button')
+        btn.textContent = 'Read'
+        a.appendChild(btn)
+        linkElement.appendChild(a)
+    } else {
+        const note = document.createElement('p')
+        note.textContent = 'No link'
+        note.className = 'note'
+        linkElement.appendChild(note)
+    }
+
+    if (blog.image) {
+        const img = document.createElement('img')
+        img.setAttribute('src', blog.image)
+        img.setAttribute('alt', blog.title)
+        img.style.width = '100%'
+        img.style.borderRadius = '6px'
+        img.style.marginBottom = '0.5rem'
+        const header = newCard.querySelector('.card-header')!
+        header.insertBefore(img, header.firstChild)
+    }
+
+    newCard.removeAttribute('id')
+    newCard.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
+    newCard.classList.add('blog-card')
+    blogListElement.appendChild(newCard)
 }
