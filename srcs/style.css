@@ -146,8 +146,8 @@ button:hover {
 }
 
 ::selection {
-  background: none;
-  color: var(--a0);
+  background: var(--fg1);
+  color: var(--bg3);
 }
 
 canvas {
