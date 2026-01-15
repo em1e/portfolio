@@ -247,8 +247,6 @@ if (document.readyState === 'loading') {
   renderSkills()
 }
 
-// SKILL DETAILS SECTION ========================================
-
 interface SkillItem {
   name: string
   type: 'project' | 'experience' | 'education' | 'certification'
@@ -329,7 +327,7 @@ function initializeSkillDetails() {
   displaySkillsForCategory('language', grouped)
 
   function displaySkillsForCategory(category: string, grouped: Record<string, Array<[string, number]>>) {
-    skillList.innerHTML = ''
+    skillList!.innerHTML = ''
     const skills = grouped[category] || []
     skills.forEach(([skillKey, count]) => {
       const btn = document.createElement('button')
@@ -349,7 +347,7 @@ function initializeSkillDetails() {
         btn.style.background = 'rgba(208, 129, 89, 0.2)'
       })
       btn.addEventListener('click', () => displaySkillDetail(skillKey, skillCounts))
-      skillList.appendChild(btn)
+      skillList!.appendChild(btn)
     })
   }
 
