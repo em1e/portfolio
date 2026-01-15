@@ -1,4 +1,7 @@
 import type { technologies } from "./technologies";
+import { tech } from "./technologies";
+
+const delay = 50
 
 export const projects: Project[] = [
     {
@@ -273,4 +276,89 @@ export interface Project {
 export interface ProjectLink {
     name: string,
     url: string
+}
+
+export function renderProjectsPageContent() {
+    const app = document.getElementById('app') as HTMLDivElement | null
+    if (!app) return
+
+    app.innerHTML = renderProjectsPage()
+    const projectListElement = document.getElementById('project-list')! as HTMLDivElement
+    const projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
+    projects.forEach((project, index) => addProject(project, index, projectListElement, projectTemplateElement, tech, delay))
+
+    projectTemplateElement.remove()
+}
+
+export function renderProjectsPage(): string {
+    return `
+    <div style="padding:2rem 3rem;">
+      <a href="/portfolio/" style="display:inline-block; margin-bottom:1rem; text-decoration:none;">← Back</a>
+      <h2>All Projects</h2>
+      <div class="card-list" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; width: 66.67%; margin: 0 auto;">
+        <div id="card-template" class="card" hidden style="width: 100%;">
+          <div class="card-timestamp"></div>
+          <div class="card-header">
+            <h2 class="card-title"></h2>
+            <p class="card-description"></p>
+          </div>
+          <div class="card-footer">
+            <div class="card-links"></div>
+            <div class="card-langs"></div>
+          </div>
+        </div>
+        <div id="project-list" class="card-list" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; width: 100%;"></div>
+      </div>
+    </div>
+    `
+}
+
+export function addProject(project: Project, index: number, projctListElement: HTMLDivElement, projectTemplateElement: HTMLTemplateElement, tech: any, delay: number) {
+    console.debug(`[main] addProject: ${project.id} (index=${index})`)
+    const newProject = projectTemplateElement.cloneNode(true) as HTMLDivElement
+
+    const timestampElement = newProject.querySelector('.card-timestamp')! as HTMLDivElement
+    const nameElement = newProject.querySelector('.card-title')! as HTMLHeadingElement
+    const descriptionElement = newProject.querySelector('.card-description')! as HTMLParagraphElement
+    const linkElement = newProject.querySelector('.card-links')! as HTMLAnchorElement
+    const languageElement = newProject.querySelector('.card-langs')! as HTMLDivElement
+
+    timestampElement.textContent = project.date
+    nameElement.textContent = project.name
+    descriptionElement.textContent = project.description
+
+    if (project.links.length > 0) {
+        project.links.forEach(link => {
+            const newLink = document.createElement('a')
+            newLink.className = 'card-link'
+            newLink.setAttribute('href', link.url)
+            newLink.setAttribute('target', '_blank')
+            newLink.setAttribute('rel', 'noopener noreferrer')
+
+            const buttonElement = document.createElement('button')
+            buttonElement.textContent = link.name
+
+            newLink.appendChild(buttonElement)
+            linkElement.appendChild(newLink)
+        })
+    } else {
+        const note = document.createElement('p')
+        note.textContent = 'No links available :(  '
+        note.className = 'note'
+        linkElement.appendChild(note)
+    }
+
+    project.technologies.forEach(langName => {
+        const lang = tech[langName]
+        if (!lang) return
+        const langElement = document.createElement('img')
+        langElement.setAttribute('src', `https://cdn.simpleicons.org/${lang.icon}`)
+        langElement.setAttribute('alt', lang.name)
+        languageElement.appendChild(langElement)
+    })
+
+    newProject.removeAttribute('id')
+    newProject.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
+    if (project.hidden) newProject.style.display = 'none'
+    projctListElement.appendChild(newProject)
 }

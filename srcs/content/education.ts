@@ -93,3 +93,73 @@ export interface URLLink {
     name: string,
     url: string
 }
+
+// Render function
+export function addEducation(ed: Education, index: number, educationListElement: HTMLDivElement, projectTemplateElement: HTMLTemplateElement, tech: any, delay: number) {
+    const newCard = projectTemplateElement.cloneNode(true) as HTMLDivElement
+
+    const timestampElement = newCard.querySelector('.card-timestamp')! as HTMLDivElement
+    const nameElement = newCard.querySelector('.card-title')! as HTMLHeadingElement
+    const descriptionElement = newCard.querySelector('.card-description')! as HTMLParagraphElement
+    const linkElement = newCard.querySelector('.card-links')! as HTMLDivElement
+    const languageElement = newCard.querySelector('.card-langs')! as HTMLDivElement
+    const headerEl = newCard.querySelector('.card-header')! as HTMLDivElement
+
+    const formatYYYYMM = (dateStr?: string) => {
+        if (!dateStr) return undefined
+        const d = new Date(dateStr)
+        if (isNaN(d.getTime())) return dateStr
+        const yyyy = d.getFullYear()
+        const mm = String(d.getMonth() + 1).padStart(2, '0')
+        return `${mm}/${yyyy}`
+    }
+
+    const start = formatYYYYMM(ed.startDate) || ''
+    const end = formatYYYYMM(ed.endDate) || ''
+    const range = ed.ongoing ? `${start} - current` : (end ? `${start} - ${end}` : start)
+
+    timestampElement.textContent = range
+    nameElement.textContent = ed.major
+
+    const schoolEl = document.createElement('h3')
+    schoolEl.className = 'card-role'
+    schoolEl.textContent = ed.school
+    headerEl.insertBefore(schoolEl, descriptionElement)
+
+    descriptionElement.textContent = ed.description || ''
+
+    if (ed.links && ed.links.length > 0) {
+        for (let i = 0; i < ed.links.length; i++) {
+            const a = document.createElement('a')
+            a.className = 'card-link'
+            a.setAttribute('href', ed.links[i].url)
+            a.setAttribute('target', '_blank')
+            a.setAttribute('rel', 'noopener noreferrer')
+            const btn = document.createElement('button')
+            btn.textContent = ed.links[i].name
+            a.appendChild(btn)
+            linkElement.appendChild(a)
+        }
+    } else {
+        const note = document.createElement('p')
+        note.textContent = 'No links available'
+        note.className = 'note'
+        linkElement.appendChild(note)
+    }
+
+    if (ed.technologies && ed.technologies.length > 0) {
+        ed.technologies.forEach(langName => {
+            const lang = tech[langName]
+            if (!lang) return
+            const langElement = document.createElement('img')
+            langElement.setAttribute('src', `https://cdn.simpleicons.org/${lang.icon}`)
+            langElement.setAttribute('alt', lang.name)
+            languageElement.appendChild(langElement)
+        })
+    }
+
+    newCard.removeAttribute('id')
+    newCard.style.animation = `fadeIn 0.5s ease ${index * delay}ms forwards`
+    newCard.classList.add('education-card')
+    educationListElement.appendChild(newCard)
+}
