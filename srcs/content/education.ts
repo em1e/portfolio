@@ -9,7 +9,12 @@ export const education: Education[] = [
 		ongoing: true,
 		description: "Studies have focused on Python, Docker, and GitLab, and I take evening classes so this is meant to be manageable alongside full-time work. The program emphasizes practical, project-based learning and hands-on use of advanced resources.",
 		technologies: ['python', 'docker', 'git', 'airflow', 'postgresql', 'md'],
-		url: "https://kamk.fi/koulutukset/tieto-ja-viestintatekniikan-insinoori-datasta-tekoalyyn-paakaupunkiseutu-monimuoto/"
+		links: [
+			{
+			    name: 'Program',
+			    url: 'https://kamk.fi/koulutukset/tieto-ja-viestintatekniikan-insinoori-datasta-tekoalyyn-paakaupunkiseutu-monimuoto/'
+			}
+		]
 	},
 	{
 		id: "hive",
@@ -17,9 +22,18 @@ export const education: Education[] = [
 		school: "Hive Helsinki, Finland",
 		startDate: "2023-10",
 		endDate: "2025-07",
-		description: "Studies focused on C, C++, and Web development, through project-based learning with peer-to-peer collaboration. Gained experience with CI/CD Pipelines, memory management, VMs, IP networking, game development, and more.",
-		technologies: ['c', 'cpp', 'html', 'css', 'js', 'python', 'wp', 'docker', 'git', 'linux', 'nginx', 'mariadb', 'md'],
-		url: "https://www.hive.fi/"
+		description: "Studies focused on C, C++, and Web development, through project-based learning with peer-to-peer collaboration. Also gained experience with CI/CD Pipelines, memory management, VMs, IP networking, game development, and more.",
+		technologies: ['c', 'cpp', 'html', 'css', 'js', 'wp', 'docker', 'git', 'linux', 'nginx', 'mariadb', 'md'],
+		links: [
+			{
+			    name: 'Website',
+			    url: 'https://www.hive.fi/'
+			},
+			{
+			    name: 'Certificate',
+			    url: 'https://certificates.hive.fi/57edd765-e0c5-449e-bbca-522ac5c88119'
+			}
+		]
 	},
 	{
 		id: "nyborg",
@@ -27,7 +41,12 @@ export const education: Education[] = [
 		school: "Nyborg Gymnasium, Denmark",
 		startDate: "2020-08",
 		endDate: "2022-05",
-		url: "https://nyborg-gym.dk/en/ib/"
+		links: [
+			{
+			    name: 'Program',
+			    url: 'https://nyborg-gym.dk/en/ib/'
+			}
+		]
 	},
 	{
 		id: "kallio",
@@ -35,7 +54,12 @@ export const education: Education[] = [
 		school: "Kallion Lukio, Finland",
 		startDate: "2019-08",
 		endDate: "2020-05",
-		url: "https://www.hel.fi/en/childhood-and-education/kallio-upper-secondary-school"
+		links: [
+			{
+			    name: 'Program',
+			    url: 'https://www.hel.fi/en/childhood-and-education/kallio-upper-secondary-school'
+			}
+		]
 	},
 	{
 		id: "meilahti",
@@ -44,7 +68,12 @@ export const education: Education[] = [
 		startDate: "2016-08",
 		endDate: "2019-05",
 		technologies: ['figma', 'blender'],
-		url: "https://www.hel.fi/en/childhood-and-education/meilahti-lower-secondary-school"
+		links: [
+			{
+			    name: 'Program',
+			    url: 'https://www.hel.fi/en/childhood-and-education/meilahti-lower-secondary-school'
+			}
+		]
 	}
 ]
 
@@ -57,5 +86,10 @@ export interface Education {
 	ongoing?: boolean,
 	description?: string,
 	technologies?: technologies[],
-	url: string
+	links: URLLink[]
+}
+
+export interface URLLink {
+    name: string,
+    url: string
 }

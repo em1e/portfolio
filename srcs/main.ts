@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     projects.forEach(addProject)
     experiences.forEach(addExperience)
     education.slice(0, 3).forEach(addEducation)
-    certifications.forEach(addCertification)
+    certifications.filter(c => c.isshowed).forEach(addCertification)
     blogs.forEach(addBlog)
 
     // runs set up functions once
@@ -61,12 +61,12 @@ function setupHeaderNav() {
     const links = [
         { name: 'Home', href: '#' },
         { name: 'About', href: '#about' },
-        { name: 'Education', href: '#education-list' },
-        { name: 'Certificates', href: '#certification-cards' },
+        { name: 'Education', href: '#education' },
+        { name: 'Certificates', href: '#certification' },
         { name: 'Skills', href: '#skills' },
-        { name: 'Projects', href: '#project-list' },
-        { name: 'Testimonials', href: '#testimonials-slider' },
-        { name: 'Experience', href: '#experience-cards' }
+        { name: 'Projects', href: '#projects' },
+        { name: 'Testimonials', href: '#testimonials' },
+        { name: 'Experience', href: '#experience' }
     ]
 
     links.forEach(l => {
@@ -154,16 +154,18 @@ function addEducation(ed: Education, index: number) {
 
     descriptionElement.textContent = ed.description || ''
 
-    if (ed.url && ed.url.length > 0) {
-        const a = document.createElement('a')
-        a.className = 'card-link'
-        a.setAttribute('href', ed.url)
-        a.setAttribute('target', '_blank')
-        a.setAttribute('rel', 'noopener noreferrer')
-        const btn = document.createElement('button')
-        btn.textContent = 'Read more'
-        a.appendChild(btn)
-        linkElement.appendChild(a)
+    if (ed.links && ed.links.length > 0) {
+        for (let i = 0; i < ed.links.length; i++) {
+            const a = document.createElement('a')
+            a.className = 'card-link'
+            a.setAttribute('href', ed.links[i].url)
+            a.setAttribute('target', '_blank')
+            a.setAttribute('rel', 'noopener noreferrer')
+            const btn = document.createElement('button')
+            btn.textContent = ed.links[i].name
+            a.appendChild(btn)
+            linkElement.appendChild(a)
+        }
     } else {
         const note = document.createElement('p')
         note.textContent = 'No links available'

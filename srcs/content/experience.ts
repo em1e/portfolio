@@ -14,7 +14,7 @@ export const experiences: Experience[] = [
       { name: "Reference", url: "https://www.linkedin.com/in/ryan-cockburn/" },
       { name: "Bocky.so", url: "https://blocky.so/" },
       { name: "YouthfulImpact", url: "https://www.youthfulimpact.org/" },
-      { name: "Gamiffynia", url: "https://gamiffynia.com/" }
+      { name: "Gamiffynia", url: "https://gamiffynia.me/" }
     ]
   },
   {

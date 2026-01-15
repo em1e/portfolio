@@ -25,6 +25,7 @@ html {
   --pop: #D08159;
   --pop2: #FFAA5E;
   --nav: #112232;
+  --nav-pop: #162c40;
 
   margin: 0;
   padding: 0;
@@ -212,6 +213,12 @@ canvas {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Offset scroll positioning to account for top padding/nav height */
+section[id],
+.content[id] {
+  scroll-margin-top: 6.5rem;
 }
 
 .note {
@@ -2079,7 +2086,7 @@ html {
 }
 
 .nav-link:hover {
-  background: var(--bg2);
+  background: var(--nav-pop);
   transform: translateY(-2px);
   color: var(--fg0);
 }
