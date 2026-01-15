@@ -95,7 +95,10 @@ export function renderSkills(): void {
 
       const img = document.createElement('img')
       img.setAttribute('alt', name)
-      img.setAttribute('src', `https://cdn.simpleicons.org/${icon}`)
+      if (name.toLowerCase() === 'java') 
+        img.setAttribute('src', `https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Java_programming_language_logo.svg/300px-Java_programming_language_logo.svg.png`)
+      else
+        img.setAttribute('src', `https://cdn.simpleicons.org/${icon}`)
       img.style.width = '18px'
       img.style.height = '18px'
       img.style.objectFit = 'contain'

@@ -8,6 +8,7 @@ import { projects } from "./content/projects";
 import { testimonials } from "./content/testimonials"
 import { experiences } from "./content/experience";
 import { blogs } from "./content/blogs";
+import { renderMainPage, renderCertificatesPage, renderProjectsPage, renderSkillsPage, renderExperiencePage } from './sections'
 
 import type { Education } from "./content/education";
 import type { Certification } from "./content/certifications";
@@ -26,6 +27,30 @@ let delay = 50
 document.addEventListener('DOMContentLoaded', () => {
     console.log('[main] DOMContentLoaded handler running')
 
+    const app = document.getElementById('app') as HTMLDivElement | null
+    if (!app) return
+
+    const pathname = window.location.pathname || ''
+    
+    if (pathname.includes('/certificates')) {
+        renderCertificatesPageContent()
+    } else if (pathname.includes('/projects')) {
+        renderProjectsPageContent()
+    } else if (pathname.includes('/skills')) {
+        renderSkillsPageContent()
+    } else if (pathname.includes('/experience')) {
+        renderExperiencePageContent()
+    } else {
+        renderMainPageContent()
+    }
+})
+
+function renderMainPageContent() {
+    const app = document.getElementById('app') as HTMLDivElement | null
+    if (!app) return
+
+    app.innerHTML = renderMainPage()
+
     projctListElement = document.getElementById('project-list')! as HTMLDivElement
     experienceListElement = document.getElementById('experience-cards')! as HTMLDivElement
     educationListElement = document.getElementById('education-list')! as HTMLDivElement
@@ -33,21 +58,68 @@ document.addEventListener('DOMContentLoaded', () => {
     certificationListElement = document.getElementById('certification-cards')! as HTMLDivElement
     projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
 
-    // runs add functions for each in the arrays
-    projects.forEach(addProject)
+    projects.filter(p => p.isshowed).forEach(addProject)
     experiences.forEach(addExperience)
     education.slice(0, 3).forEach(addEducation)
     certifications.filter(c => c.isshowed).forEach(addCertification)
     blogs.forEach(addBlog)
 
-    // runs set up functions once
     setupHeaderNav()
     renderSkills()
     renderTestimonials()
     contactForm()
 
     projectTemplateElement!.remove()
-})
+}
+
+function renderCertificatesPageContent() {
+    const app = document.getElementById('app') as HTMLDivElement | null
+    if (!app) return
+
+    app.innerHTML = renderCertificatesPage()
+    certificationListElement = document.getElementById('certification-cards')! as HTMLDivElement
+    projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
+    certifications.forEach((cert, index) => addCertification(cert, index))
+
+    setupHeaderNav()
+    projectTemplateElement!.remove()
+}
+
+function renderProjectsPageContent() {
+    const app = document.getElementById('app') as HTMLDivElement | null
+    if (!app) return
+
+    app.innerHTML = renderProjectsPage()
+    projctListElement = document.getElementById('project-list')! as HTMLDivElement
+    projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
+    projects.forEach((project, index) => addProject(project, index))
+
+    setupHeaderNav()
+    projectTemplateElement!.remove()
+}
+
+function renderSkillsPageContent() {
+    const app = document.getElementById('app') as HTMLDivElement | null
+    if (!app) return
+
+    app.innerHTML = renderSkillsPage()
+
+    setupHeaderNav()
+    renderSkills()
+}
+
+function renderExperiencePageContent() {
+    const app = document.getElementById('app') as HTMLDivElement | null
+    if (!app) return
+
+    app.innerHTML = renderExperiencePage()
+    experienceListElement = document.getElementById('experience-cards')! as HTMLDivElement
+    projectTemplateElement = document.getElementById('card-template')! as HTMLTemplateElement
+    experiences.forEach((exp, index) => addExperience(exp, index))
+
+    setupHeaderNav()
+    projectTemplateElement!.remove()
+}
 
 // NAV ---------------------------------------------
 
@@ -58,15 +130,15 @@ function setupHeaderNav() {
     const nav = document.createElement('nav')
     nav.className = 'nav'
 
+    const pathname = window.location.pathname || ''
+    const isMainPage = !pathname.includes('/certificates') && !pathname.includes('/projects') && !pathname.includes('/skills') && !pathname.includes('/experience')
+
     const links = [
-        { name: 'Home', href: '#' },
-        { name: 'About', href: '#about' },
-        { name: 'Education', href: '#education' },
-        { name: 'Certificates', href: '#certification' },
-        { name: 'Skills', href: '#skills' },
-        { name: 'Projects', href: '#projects' },
-        { name: 'Testimonials', href: '#testimonials' },
-        { name: 'Experience', href: '#experience' }
+        { name: 'Home', href: isMainPage ? '#' : '/portfolio/' },
+        { name: 'Certificates', href: isMainPage ? '#certification' : '/portfolio/certificates' },
+        { name: 'Skills', href: isMainPage ? '#skills' : '/portfolio/skills' },
+        { name: 'Projects', href: isMainPage ? '#projects' : '/portfolio/projects' },
+        { name: 'Experience', href: isMainPage ? '#experience' : '/portfolio/experience' }
     ]
 
     links.forEach(l => {
@@ -74,15 +146,19 @@ function setupHeaderNav() {
         a.textContent = l.name
         a.setAttribute('href', l.href)
         a.className = 'nav-link'
-        a.addEventListener('click', (e) => {
-            e.preventDefault()
-            if (l.href === '#' || l.href === '#top') {
-                window.scrollTo({ top: 0, behavior: 'smooth' })
-                return
-            }
-            const el = document.querySelector(l.href)
-            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        })
+
+        if (isMainPage && l.href.startsWith('#')) {
+            a.addEventListener('click', (e) => {
+                e.preventDefault()
+                if (l.href === '#' || l.href === '#top') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' })
+                    return
+                }
+                const el = document.querySelector(l.href)
+                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            })
+        }
+        
         nav.appendChild(a)
     })
 

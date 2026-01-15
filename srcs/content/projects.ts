@@ -2,9 +2,26 @@ import type { technologies } from "./technologies";
 
 export const projects: Project[] = [
     {
+        id: 'APUA',
+        name: 'APUA',
+        genre: ['web'],
+        isshowed: true,
+        description: 'A project designed to assist me in managing and organizing my daily tasks efficiently (and maybe helping others in the future too).',
+        technologies: ['ts', 'react', 'git'],
+        date: '2025-10-22',
+        links: [
+            // {
+            //     name: 'GitHub',
+            //     url: 'https://github.com/em1e/JobCord'
+            // }
+        ],
+        hidden: false
+    },
+    {
         id: 'jobcord',
         name: 'JobCord',
         genre: ['automation', 'data'],
+        isshowed: true,
         description: 'An automated web scraper for job search and application; allowing users to search for jobs, save listings, and track their applications easily.',
         technologies: ['ts', 'python', 'docker', 'postgresql', 'airflow', 'git'],
         date: '2025-10-22',
@@ -20,6 +37,7 @@ export const projects: Project[] = [
         id: 'youtubetrends',
         name: 'YoutubeTrends',
         genre: ['automation', 'data'],
+        isshowed: true,
         description: 'Automated data pipeline for fetching YouTube trending videos and loading them into a database.',
         technologies: ['python', 'docker', 'postgresql', 'airflow', 'git', 'md'],
         date: '2025-10-14',
@@ -54,6 +72,7 @@ export const projects: Project[] = [
         id: 'portfolio',
         name: 'This Portfolio',
         genre: ['web'],
+        isshowed: true,
         description: 'Built this personal portfolio from scratch to showcase my projects, experience, and skills. It is built to be responsive, engaging to users, visually appealing, and easy to edit.',
         technologies: ['ts', 'git'],
         date: '2025-08-09',
@@ -73,6 +92,7 @@ export const projects: Project[] = [
         id: 'inception',
         name: 'Inception',
         genre: ['other'],
+        isshowed: true,
         description: 'Docker-based web server application, comtains wordpress, mariadb, and nginx. Optimized for deployment on a VM.',
         technologies: ['docker', 'nginx', 'mariadb', 'sh', 'git'],
         date: '2025-02-05',
@@ -113,6 +133,7 @@ export const projects: Project[] = [
         id: 'ft_irc',
         name: 'FT IRC',
         genre: ['other'],
+        isshowed: true,
         description: 'IRC (Internet Relay Chat) server written in C++ that supports multiple channels, private messaging, user authentication and more.',
         technologies: ['cpp', 'git'],
         date: '2024-11-18',
@@ -143,6 +164,7 @@ export const projects: Project[] = [
         id: 'cub3d',
         name: 'Cub3D',
         genre: ['game'],
+        isshowed: true,
         description: '3D Raycasting game written in C, based on 2d maps and inspired by the classic game Wolfenstein 3D.',
         technologies: ['c', 'git'],
         date: '2024-10-29',
@@ -188,6 +210,7 @@ export const projects: Project[] = [
         id: 'minishell',
         name: 'Minishell',
         genre: ['other'],
+        isshowed: true,
         description: 'Minishell is a recreation of bash, designed to help you understand how command-line interpreters work.',
         technologies: ['c', 'sh'],
         date: '2024-05-25',
@@ -242,6 +265,7 @@ export interface Project {
     description: string,
     technologies: technologies[],
     date: string,
+    isshowed?: boolean,
     links: ProjectLink[],
     hidden?: boolean
 }
