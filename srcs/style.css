@@ -24,8 +24,10 @@ html {
   --a0-30: #544E684d;
   --pop: #D08159;
   --pop2: #FFAA5E;
+
   --nav: #112232;
   --nav-pop: #162c40;
+  --text-background: #1e1e1ed1;
 
   margin: 0;
   padding: 0;

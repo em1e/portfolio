@@ -172,7 +172,7 @@ function renderMainPage(): string {
 
         <!-- Info -->
         <div class="landing--container-right">
-          <div class="lcr--content" style="font-weight: 900; background-color: rgb(30,30,30,0.9); border-radius: 10px; padding: 20px;">
+          <div class="lcr--content" style="font-weight: 900; background-color: var(--text-background); border-radius: 10px; padding: 20px;">
             <h6>Software Developer • Full-Stack Developer • Data Engineer</h6>
             <h1 style="color: #D08159;">Vilja Kettunen</h1>
             <p>

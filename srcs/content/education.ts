@@ -3,7 +3,7 @@ import type { technologies } from "./technologies";
 export const education: Education[] = [
 	{
 		id: "kamk",
-		major: "Bachelor’s Degree in Information Technology (Data Engineering)",
+		title: "Bachelor’s Degree in Information Technology (Data Engineering)",
 		school: "Kajaani University of Applied Sciences, Online",
 		startDate: "2025-09",
 		ongoing: true,
@@ -18,7 +18,7 @@ export const education: Education[] = [
 	},
 	{
 		id: "hive",
-		major: "Software Development Program",
+		title: "Software Development Program",
 		school: "Hive Helsinki, Finland",
 		startDate: "2023-10",
 		endDate: "2025-07",
@@ -37,7 +37,7 @@ export const education: Education[] = [
 	},
 	{
 		id: "nyborg",
-		major: "International Baccalaureate Diploma",
+		title: "International Baccalaureate Diploma",
 		school: "Nyborg Gymnasium, Denmark",
 		startDate: "2020-08",
 		endDate: "2022-05",
@@ -50,7 +50,7 @@ export const education: Education[] = [
 	},
 	{
 		id: "kallio",
-		major: "Upper Secondary Education, Performing Arts",
+		title: "Upper Secondary Education, Performing Arts",
 		school: "Kallion Lukio, Finland",
 		startDate: "2019-08",
 		endDate: "2020-05",
@@ -63,7 +63,7 @@ export const education: Education[] = [
 	},
 	{
 		id: "meilahti",
-		major: "Lower Secondary Education, Digital Arts",
+		title: "Lower Secondary Education, Digital Arts",
 		school: "Meilahden Ylläaste, Finland",
 		startDate: "2016-08",
 		endDate: "2019-05",
@@ -79,7 +79,7 @@ export const education: Education[] = [
 
 export interface Education {
 	id: string,
-	major: string,
+	title: string,
 	school: string,
 	startDate: string,
 	endDate?: string,
@@ -119,7 +119,7 @@ export function addEducation(ed: Education, index: number, educationListElement:
     const range = ed.ongoing ? `${start} - current` : (end ? `${start} - ${end}` : start)
 
     timestampElement.textContent = range
-    nameElement.textContent = ed.major
+    nameElement.textContent = ed.title
 
     const schoolEl = document.createElement('h3')
     schoolEl.className = 'card-role'
